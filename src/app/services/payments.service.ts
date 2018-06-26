@@ -1,18 +1,19 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/index";
+import {Apartment} from "../model/interfaces";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentsService {
+export class ApartmentService {
 
-  postsUrl = ' http://localhost:3000/posts';
+  postsUrl = ' http://localhost:3000/apartments';
 
   constructor(private http: HttpClient) {
   }
 
-  getPosts():Observable<any>{
-    return this.http.get(this.postsUrl)
+  getApartments(): Observable<Apartment[]> {
+    return this.http.get<Apartment[]>(this.postsUrl)
   }
 }
