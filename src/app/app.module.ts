@@ -9,23 +9,27 @@ import {
   MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
   MatTableModule, MatProgressSpinnerModule, MatPaginatorModule
 } from '@angular/material';
-import { PaymentsComponent } from './payments/payments.component';
+
 import { WorksComponent } from './works/works.component';
 import { InboxComponent } from './inbox/inbox.component';
 import {AppRoutesModule} from "./app-routes";
 import { TableComponent } from './table/table.component';
 import {HttpClientModule} from "@angular/common/http";
+import {ApartmentsModule} from "./apartments-module/apartments.module";
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    PaymentsComponent,
     WorksComponent,
     InboxComponent,
-    TableComponent
+    TableComponent,
+
   ],
   imports: [
+    ApartmentsModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
