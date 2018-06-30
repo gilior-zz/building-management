@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Apartment} from "../../model/interfaces";
+import {Apartment} from "../../common/interfaces";
 import {ApartmentService} from "../../services/payments.service";
 
 @Component({
-  selector: 'app-payments',
+  selector: 'payments',
   templateUrl: './apartments.component.html',
   styleUrls: ['./apartments.component.scss']
 })
