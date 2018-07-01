@@ -20,6 +20,23 @@
           "phone": "phone c",
           "email": "email c"
         }
+      ],
+      "apartmentPayments": [
+        {
+          "year:": "2000",
+          "month": "11",
+          "payment": "280"
+        },
+        {
+          "year:": "2100",
+          "month": "01",
+          "payment": "280"
+        },
+        {
+          "year:": "2200",
+          "month": "04",
+          "payment": "280"
+        }
       ]
     },
     {
@@ -42,6 +59,23 @@
           "phone": "phone c",
           "email": "email c"
         }
+      ],
+      "apartmentPayments": [
+        {
+          "year:": "2000",
+          "month": "11",
+          "payment": "280"
+        },
+        {
+          "year:": "2100",
+          "month": "01",
+          "payment": "280"
+        },
+        {
+          "year:": "2200",
+          "month": "04",
+          "payment": "280"
+        }
       ]
     },
     {
@@ -63,6 +97,23 @@
           "name": "name c",
           "phone": "phone c",
           "email": "email c"
+        }
+      ],
+      "apartmentPayments": [
+        {
+          "year:": "2000",
+          "month": "11",
+          "payment": "280"
+        },
+        {
+          "year:": "2100",
+          "month": "01",
+          "payment": "280"
+        },
+        {
+          "year:": "2200",
+          "month": "04",
+          "payment": "280"
         }
       ]
     },

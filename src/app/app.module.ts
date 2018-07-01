@@ -9,6 +9,7 @@ import {TableComponent} from './table/table.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ApartmentsModule} from "./apartments-module/apartments.module";
 import {SharedModule} from "./common/shared.module";
+import {StoreModule} from "./store/store.module";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {SharedModule} from "./common/shared.module";
   ],
   imports: [
     SharedModule,
+    StoreModule,
     ApartmentsModule,
     HttpClientModule,
     BrowserModule,
