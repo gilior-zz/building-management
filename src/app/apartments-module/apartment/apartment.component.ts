@@ -18,8 +18,9 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private  apartmentService: ApartmentService) {
+    this.createForm();
     this.subscription = this.apartmentService.selectedApartmentdSource$.subscribe(() => {
-      this.createForm();
+      this.rebuildForm();
     })
 
   }
@@ -50,12 +51,12 @@ export class ApartmentComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.apartmentForm = this.fb.group({
-      id: [this.apartment.id, Validators.required],
+      id: ['', Validators.required],
       apartmentInfo: this.fb.array([]), // <-- secretLairs as an empty FormArray
-      status: [this.apartment.status, Validators.required],
-      debt: [this.apartment.debt, Validators.required]
+      status: ['', Validators.required],
+      debt: ['', Validators.required]
     });
-    this.setInfos(this.apartment.apartmentInfo);
+    // this.setInfos(this.apartment.apartmentInfo);
 
   }
 

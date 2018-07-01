@@ -1,6 +1,6 @@
 <h3><i>Using FormArray to add groups</i></h3>
 
-<form [formGroup]="apartmentForm">
+<form *ngIf="apartmentForm" [formGroup]="apartmentForm">
   <p>Form Changed: {{ apartmentForm.dirty }}</p>
 
   <div>
@@ -8,7 +8,7 @@
       <input formControlName="status">
     </label>
   </div>
-  <div formArrayName="apartmentInfo">
+  <div  formArrayName="apartmentInfo">
     <div *ngFor="let info of apartmentInfo.controls; let i=index" [formGroupName]="i">
       <!-- The repeated address template -->
       <h4>info #{{i + 1}}</h4>
@@ -31,19 +31,8 @@
       <br>
       <!-- End of the repeated address template -->
     </div>
-    <button (click)="addInfo()" type="button">Add a Secret Lair</button>
-  </div>
-  <div class="form-group radio">
-    <h4>Super power:</h4>
-    <label class="center-block"><input type="radio" formControlName="power" value="flight">Flight</label>
-    <label class="center-block"><input type="radio" formControlName="power" value="x-ray vision">X-ray vision</label>
-    <label class="center-block"><input type="radio" formControlName="power" value="strength">Strength</label>
-  </div>
-  <div class="checkbox">
-    <label class="center-block">
-      <input type="checkbox" formControlName="sidekick">I have a sidekick.
-    </label>
+    <button (click)="addInfo()" type="button">Add info</button>
   </div>
 </form>
 
-<p>heroForm value: {{ heroForm.value | json}}</p>
+
