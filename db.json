@@ -4,7 +4,7 @@
       "id": 1,
       "debt": 0,
       "status": "tenant",
-      "apartrmentInfo": [
+      "apartmentInfo": [
         {
           "name": "name a",
           "phone": "phone a",
@@ -43,7 +43,7 @@
       "id": 2,
       "debt": 10,
       "status": "tenant",
-      "apartrmentInfo": [
+      "apartmentInfo": [
         {
           "name": "name a",
           "phone": "phone a",
@@ -82,7 +82,7 @@
       "id": 3,
       "debt": 30,
       "status": "tenant",
-      "apartrmentInfo": [
+      "apartmentInfo": [
         {
           "name": "name a",
           "phone": "phone a",
@@ -121,7 +121,7 @@
       "id": 4,
       "debt": 40,
       "status": "tenant",
-      "apartrmentInfo": [
+      "apartmentInfo": [
         {
           "name": "name a",
           "phone": "phone a",

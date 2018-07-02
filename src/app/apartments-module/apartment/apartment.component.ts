@@ -42,11 +42,11 @@ export class ApartmentComponent implements OnInit, OnDestroy {
 
   rebuildForm() {
     this.apartmentForm.reset({
-      id: this.apartment.id,
-      status: this.apartment.status,
-      debt: this.apartment.debt,
+      id: this.apartmentService.selectedApartment.id,
+      status: this.apartmentService.selectedApartment.status,
+      debt: this.apartmentService.selectedApartment.debt,
     });
-    this.setInfos(this.apartment.apartmentInfo);
+    this.setInfos(this.apartmentService.selectedApartment.apartmentInfo);
   }
 
   createForm() {
