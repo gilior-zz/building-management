@@ -49,4 +49,8 @@ export class ApartmentService {
       payload: id,
     })
   }
+
+  saveApartmentDetail(obj: Apartment) {
+    console.log(obj)
+  }
 }

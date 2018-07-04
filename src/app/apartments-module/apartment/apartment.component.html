@@ -1,31 +1,38 @@
 <h3><i>Using FormArray to add groups</i></h3>
 
-<form *ngIf="apartmentForm" [formGroup]="apartmentForm">
-  <p>Form Changed: {{ apartmentForm.dirty }}</p>
-
+<form (ngSubmit)="onSubmit()" *ngIf="apartmentForm" [formGroup]="apartmentForm">
+  <!--<p>Form Changed: {{ apartmentForm.dirty }}</p>-->
   <div>
-    <label>status:
-      <input formControlName="status">
-    </label>
+    <label><input readonly type="number" formControlName="debt"></label>
   </div>
-  <div  formArrayName="apartmentInfo">
+  <div>
+    <div>status:</div>
+    <label><input type="radio" formControlName="status" value="tenant">tenant</label>
+    <label><input type="radio" formControlName="status" value="owner">owner</label>
+
+
+  </div>
+  <br><br>
+  <div formArrayName="apartmentInfo">
     <div *ngFor="let info of apartmentInfo.controls; let i=index" [formGroupName]="i">
-      <!-- The repeated address template -->
-      <h4>info #{{i + 1}}</h4>
+      <!-- The repeated info template -->
+      <h4>info #{{i + 1}}
+        <button (click)="removeInfo(i)" type="button">Remove info</button>
+      </h4>
       <div>
         <label>name:
-          <input formControlName="name">
+          <input type="text" formControlName="name">
         </label>
       </div>
       <div>
         <label>phone:
-          <input formControlName="phone">
+          <input type="text" formControlName="phone">
         </label>
       </div>
 
       <div>
         <label>email:
-          <input formControlName="email">
+          <input type="email" formControlName="email">
         </label>
       </div>
       <br>
@@ -33,6 +40,7 @@
     </div>
     <button (click)="addInfo()" type="button">Add info</button>
   </div>
+  <button type="submit">Save</button>
 </form>
 
 

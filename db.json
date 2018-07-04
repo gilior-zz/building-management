@@ -42,7 +42,7 @@
     {
       "id": 2,
       "debt": 10,
-      "status": "tenant",
+      "status": "owner",
       "apartmentInfo": [
         {
           "name": "name a",

@@ -49,6 +49,22 @@ export class ApartmentComponent implements OnInit, OnDestroy {
     this.setInfos(this.apartmentService.selectedApartment.apartmentInfo);
   }
 
+  onSubmit() {
+
+    let obj = this.generateObj();
+    this.apartmentService.saveApartmentDetail(obj)
+  }
+
+  generateObj():Apartment {
+    let id = this.apartmentForm.value.id;
+    let status = this.apartmentForm.value.status;
+    let apartmentInfo = this.apartmentForm.value.apartmentInfo.map(info => {
+        return {...info}
+      }
+    );
+    return <Apartment>{apartmentInfo: apartmentInfo, id: id, status: status}
+  }
+
   createForm() {
     this.apartmentForm = this.fb.group({
       id: ['', Validators.required],
@@ -56,8 +72,6 @@ export class ApartmentComponent implements OnInit, OnDestroy {
       status: ['', Validators.required],
       debt: ['', Validators.required]
     });
-    // this.setInfos(this.apartment.apartmentInfo);
-
   }
 
   setInfos(apartmentInfo: ApartmentInfo[]) {
@@ -71,4 +85,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
 
+  removeInfo(i: number) {
+    this.apartmentInfo.removeAt(i);
+  }
 }

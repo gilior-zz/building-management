@@ -17,7 +17,7 @@ export function rootReducer(lastState: IAppState, action: FSA<Payload, MetaData>
       state.apartments = action.payload
       return state;
     case APARTMENT_SELECTED:
-      let state = <IAppState>{...lastState};
+      state = <IAppState>{...lastState};
       state.selectedApartmentID = action.payload
       return state;
   }
