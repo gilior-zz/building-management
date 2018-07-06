@@ -1,12 +1,13 @@
 export interface Apartment {
   id: number;
-  floor:number,
+  floor: number,
   debt: number;
   apartmentInfo: ApartmentInfo[];
   apartmentPayments: ApartmentPayments[];
 }
 
 export interface ApartmentInfo {
+  id: number,
   name: string;
   phone: string;
   email: string;
@@ -21,7 +22,7 @@ export interface ApartmentPayments {
 
 export interface IAppState {
   apartments: Apartment[];
-  selectedApartmentID: number|undefined;
+  selectedApartmentID: number | undefined;
 }
 
 

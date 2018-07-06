@@ -27,18 +27,21 @@
       "debt": 0,
       "apartmentInfo": [
         {
+          "id": 1,
           "name": "name a",
           "phone": "phone a",
           "email": "email a",
           "status": "tenant"
         },
         {
+          "id": 2,
           "name": "name b",
           "phone": "phone b",
           "email": "email b",
           "status": "tenant"
         },
         {
+          "id": 3,
           "name": "name c",
           "phone": "phone c",
           "email": "email c",
@@ -72,21 +75,25 @@
       "status": "owner",
       "apartmentInfo": [
         {
+          "id": 4,
           "name": "name a",
           "phone": "phone a",
           "email": "email a",
           "status": "tenant"
         },
         {
+          "id": 5,
           "name": "name b",
           "phone": "phone b",
           "email": "email b",
           "status": "tenant"
         },
         {
+          "id": 6,
           "name": "name c",
           "phone": "phone c",
-          "email": "email c"
+          "email": "email c",
+          "status": "tenant"
         }
       ],
       "apartmentPayments": [
@@ -116,18 +123,21 @@
       "status": "tenant",
       "apartmentInfo": [
         {
+          "id": 7,
           "name": "name a",
           "phone": "phone a",
           "email": "email a",
           "status": "tenant"
         },
         {
+          "id": 8,
           "name": "name b",
           "phone": "phone b",
           "email": "email b",
           "status": "tenant"
         },
         {
+          "id": 9,
           "name": "name c",
           "phone": "phone c",
           "email": "email c",
@@ -160,18 +170,21 @@
       "status": "tenant",
       "apartmentInfo": [
         {
+          "id": 10,
           "name": "name a",
           "phone": "phone a",
           "email": "email a",
           "status": "tenant"
         },
         {
+          "id": 11,
           "name": "name b",
           "phone": "phone b",
           "email": "email b",
           "status": "tenant"
         },
         {
+          "id": 12,
           "name": "name c",
           "phone": "phone c",
           "email": "email c",

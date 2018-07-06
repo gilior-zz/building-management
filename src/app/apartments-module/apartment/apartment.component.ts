@@ -50,7 +50,6 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-
     let obj = this.generateObj();
     this.apartmentService.saveApartmentDetail(obj)
   }
@@ -61,7 +60,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
         return {...info}
       }
     );
-    return <Apartment>{apartmentInfo: apartmentInfo, id: id, status: status}
+    return <Apartment>{apartmentInfo: apartmentInfo, id: id}
   }
 
   createForm() {
@@ -80,7 +79,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
   addInfo() {
-    this.apartmentInfo.push(this.fb.group(<ApartmentInfo>{name: '', email: '', phone: ''}));
+    this.apartmentInfo.push(this.fb.group(<ApartmentInfo>{name: '', email: '', phone: '', status: 'tenant', id: -1}));
   }
 
 

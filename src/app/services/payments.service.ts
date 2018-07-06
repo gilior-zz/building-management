@@ -51,6 +51,6 @@ export class ApartmentService {
   }
 
   saveApartmentDetail(obj: Apartment) {
-    console.log(obj)
+    console.log(obj);
   }
 }
