@@ -1,6 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #drawer
+    (openedChange)="onOpenedChange($event)"
     class="sidenav"
     fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -14,7 +15,7 @@
 
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content [style.margin-right.px]="margin">
     <mat-toolbar color="primary">
       <button
         type="button"
@@ -24,7 +25,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Building Management</span>
+      <span>ניהול הבניין</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

@@ -1,4 +1,4 @@
-<h3><i>Using FormArray to add groups</i></h3>
+<!--<h3><i>Using FormArray to add groups</i></h3>-->
 
 <form (ngSubmit)="onSubmit()" *ngIf="apartmentForm" [formGroup]="apartmentForm">
   <!--<p>Form Changed: {{ apartmentForm.dirty }}</p>-->
@@ -15,7 +15,7 @@
     <div *ngFor="let info of apartmentInfo.controls; let i=index" [formGroupName]="i">
       <!-- The repeated info template -->
       <h4>איש קשר #{{i + 1}}
-        <button (click)="removeInfo(i)" type="button">הסרת איש קשר</button>
+        <button (click)="markAsDeleted(i)" type="button">הסרת איש קשר</button>
       </h4>
       <div>
         <label>שם:
