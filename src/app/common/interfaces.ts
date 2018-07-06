@@ -7,6 +7,7 @@ export interface Apartment {
 }
 
 export interface ApartmentInfo {
+  toDelete:boolean;
   id: number,
   name: string;
   phone: string;

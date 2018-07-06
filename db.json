@@ -27,6 +27,7 @@
       "debt": 0,
       "apartmentInfo": [
         {
+          "toDelete": false,
           "id": 1,
           "name": "name a",
           "phone": "phone a",
@@ -34,6 +35,7 @@
           "status": "tenant"
         },
         {
+          "toDelete": false,
           "id": 2,
           "name": "name b",
           "phone": "phone b",
@@ -41,6 +43,7 @@
           "status": "tenant"
         },
         {
+          "toDelete": false,
           "id": 3,
           "name": "name c",
           "phone": "phone c",
@@ -75,6 +78,7 @@
       "status": "owner",
       "apartmentInfo": [
         {
+          "toDelete": false,
           "id": 4,
           "name": "name a",
           "phone": "phone a",
@@ -82,6 +86,7 @@
           "status": "tenant"
         },
         {
+          "toDelete": false,
           "id": 5,
           "name": "name b",
           "phone": "phone b",
@@ -89,6 +94,7 @@
           "status": "tenant"
         },
         {
+          "toDelete": false,
           "id": 6,
           "name": "name c",
           "phone": "phone c",
@@ -123,6 +129,7 @@
       "status": "tenant",
       "apartmentInfo": [
         {
+          "toDelete": false,
           "id": 7,
           "name": "name a",
           "phone": "phone a",
@@ -130,6 +137,7 @@
           "status": "tenant"
         },
         {
+          "toDelete": false,
           "id": 8,
           "name": "name b",
           "phone": "phone b",
@@ -137,6 +145,7 @@
           "status": "tenant"
         },
         {
+          "toDelete": false,
           "id": 9,
           "name": "name c",
           "phone": "phone c",
@@ -170,6 +179,7 @@
       "status": "tenant",
       "apartmentInfo": [
         {
+          "toDelete": false,
           "id": 10,
           "name": "name a",
           "phone": "phone a",
@@ -177,6 +187,7 @@
           "status": "tenant"
         },
         {
+          "toDelete": false,
           "id": 11,
           "name": "name b",
           "phone": "phone b",
@@ -184,6 +195,7 @@
           "status": "tenant"
         },
         {
+          "toDelete": false,
           "id": 12,
           "name": "name c",
           "phone": "phone c",
