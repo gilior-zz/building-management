@@ -17,9 +17,6 @@ export class NavComponent {
   public margin: number = 0;
 
   constructor(private breakpointObserver: BreakpointObserver) {
-    this.isHandset$.subscribe(i=>
-      this.margin = i ? 0 : 0
-    )
   }
 
   onOpenedChange(isOpen: boolean) {
