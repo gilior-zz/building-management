@@ -4,13 +4,13 @@
     class="sidenav"
     fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [mode]="(isHandset$ | async) ? 'push' : 'side'"
     [opened]="!(isHandset$ | async)">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-toolbar color="primary">תפריט</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLinkActive="active" [routerLink]="['/payments']">Payments</a>
-      <a mat-list-item routerLinkActive="active" [routerLink]="['/works']">Works</a>
-      <a mat-list-item routerLinkActive="active" [routerLink]="['/inbox']">Inbox</a>
+      <a mat-list-item routerLinkActive="active" [routerLink]="['/payments']">כללי</a>
+      <a mat-list-item routerLinkActive="active" [routerLink]="['/works']">עבודות</a>
+      <a mat-list-item routerLinkActive="active" [routerLink]="['/inbox']">דואר נכנס</a>
 
     </mat-nav-list>
   </mat-sidenav>
