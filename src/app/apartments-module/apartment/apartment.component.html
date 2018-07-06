@@ -15,7 +15,7 @@
     <div *ngFor="let info of apartmentInfo.controls; let i=index" [formGroupName]="i">
       <!-- The repeated info template -->
       <h4>איש קשר #{{i + 1}}
-        <button (click)="markAsDeleted(i)" type="button">הסרת איש קשר</button>
+        <button (click)="toggleDeleted(i)" type="button">{{getActionBtnTxt(i)}}</button>
       </h4>
       <div>
         <label>שם:

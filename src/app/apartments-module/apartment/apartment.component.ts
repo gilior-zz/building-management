@@ -79,11 +79,24 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
   addInfo() {
-    this.apartmentInfo.push(this.fb.group(<ApartmentInfo>{name: '', email: '', phone: '', status: 'tenant', id: -1}));
+    this.apartmentInfo.push(this.fb.group(<ApartmentInfo>{
+      name: '',
+      email: '',
+      phone: '',
+      status: 'tenant',
+      id: -1,
+      toDelete: false
+    }));
   }
 
 
-  markAsDeleted(i: number) {
-    this.apartmentInfo.removeAt(i);
+  toggleDeleted(i: number) {
+    let markAsDeleted = !this.apartmentInfo.at(i).get('toDelete').value;
+    this.apartmentInfo.at(i).get('toDelete').setValue(markAsDeleted);
+  }
+
+  getActionBtnTxt(i: number) {
+    let markAsDeleted = this.apartmentInfo.at(i).get('toDelete').value;
+    return markAsDeleted ? 'ביטול' : 'הסרת איש קשר'
   }
 }
