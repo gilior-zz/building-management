@@ -1,6 +1,6 @@
 export interface Apartment {
   id: number;
-  status: 'tenant' | 'owner'
+  floor:number,
   debt: number;
   apartmentInfo: ApartmentInfo[];
   apartmentPayments: ApartmentPayments[];
@@ -10,6 +10,7 @@ export interface ApartmentInfo {
   name: string;
   phone: string;
   email: string;
+  status: 'tenant' | 'owner'
 }
 
 export interface ApartmentPayments {

@@ -43,7 +43,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   rebuildForm() {
     this.apartmentForm.reset({
       id: this.apartmentService.selectedApartment.id,
-      status: this.apartmentService.selectedApartment.status,
+      floor: this.apartmentService.selectedApartment.floor,
       debt: this.apartmentService.selectedApartment.debt,
     });
     this.setInfos(this.apartmentService.selectedApartment.apartmentInfo);
@@ -55,9 +55,8 @@ export class ApartmentComponent implements OnInit, OnDestroy {
     this.apartmentService.saveApartmentDetail(obj)
   }
 
-  generateObj():Apartment {
+  generateObj(): Apartment {
     let id = this.apartmentForm.value.id;
-    let status = this.apartmentForm.value.status;
     let apartmentInfo = this.apartmentForm.value.apartmentInfo.map(info => {
         return {...info}
       }
