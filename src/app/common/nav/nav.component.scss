@@ -1,0 +1,21 @@
+
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+mat-sidenav-content{
+  //margin: 0 200px 0 0 !important;
+}
+
+@media only screen and (max-width: 599px) and (orientation: portrait),
+(max-width: 959px) and (orientation: landscape) {
+  mat-sidenav-content {
+    //margin-right: 0 !important;
+  }
+}

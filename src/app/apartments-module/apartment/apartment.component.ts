@@ -83,7 +83,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
 
-  removeInfo(i: number) {
+  markAsDeleted(i: number) {
     this.apartmentInfo.removeAt(i);
   }
 }

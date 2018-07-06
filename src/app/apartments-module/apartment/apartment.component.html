@@ -1,4 +1,4 @@
-<h3><i>Using FormArray to add groups</i></h3>
+<!--<h3><i>Using FormArray to add groups</i></h3>-->
 
 <form (ngSubmit)="onSubmit()" *ngIf="apartmentForm" [formGroup]="apartmentForm">
   <!--<p>Form Changed: {{ apartmentForm.dirty }}</p>-->
@@ -14,34 +14,34 @@
   <div formArrayName="apartmentInfo">
     <div *ngFor="let info of apartmentInfo.controls; let i=index" [formGroupName]="i">
       <!-- The repeated info template -->
-      <h4>tenant #{{i + 1}}
-        <button (click)="removeInfo(i)" type="button">Remove info</button>
+      <h4>איש קשר #{{i + 1}}
+        <button (click)="markAsDeleted(i)" type="button">הסרת איש קשר</button>
       </h4>
       <div>
-        <label>name:
+        <label>שם:
           <input type="text" formControlName="name">
         </label>
       </div>
       <div>
-        <label>phone:
+        <label>טלפון:
           <input type="text" formControlName="phone">
         </label>
       </div>
 
       <div>
-        <label>email:
+        <label>אי מייל:
           <input type="email" formControlName="email">
         </label>
       </div>
-      <div>status:</div>
-      <label><input type="radio" formControlName="status" value="tenant">tenant</label>
-      <label><input type="radio" formControlName="status" value="owner">owner</label>
+      <div>בעלות:</div>
+      <label><input type="radio" formControlName="status" value="tenant">דייר</label>
+      <label><input type="radio" formControlName="status" value="owner">בעל דירה</label>
       <br>
       <!-- End of the repeated address template -->
     </div>
-    <button (click)="addInfo()" type="button">Add info</button>
+    <button (click)="addInfo()" type="button">הוספת איש קשר</button>
   </div>
-  <button type="submit">Save</button>
+  <button type="submit">שמירה</button>
 </form>
 
 
