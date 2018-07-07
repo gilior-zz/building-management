@@ -29,4 +29,8 @@ export class NavComponent {
   onOpenedChange(isOpen: boolean) {
     this.margin = isOpen ? 200 : 0;
   }
+
+  onLogOut() {
+    this.authService.logout();
+  }
 }

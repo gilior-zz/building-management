@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.isLoggedIn = false;
-     localStorage.setItem('isLoggedIn', JSON.stringify(false))
+    // this.authService.isLoggedIn = false;
+    //  localStorage.setItem('isLoggedIn', JSON.stringify(false))
   }
 
   onLoginRequest() {
