@@ -56,11 +56,12 @@ export class ApartmentComponent implements OnInit, OnDestroy {
 
   generateObj(): Apartment {
     let id = this.apartmentForm.value.id;
+    let floor = this.apartmentForm.value.floor;
     let apartmentInfo = this.apartmentForm.value.apartmentInfo.map(info => {
         return {...info}
       }
     );
-    return <Apartment>{apartmentInfo: apartmentInfo, id: id}
+    return <Apartment>{apartmentsDash: {id: id}, apartmentInfo: apartmentInfo};
   }
 
   createForm() {

@@ -3,7 +3,7 @@ import {IAppState} from "./interfaces";
 export module StoreConst {
   export const INITIAL_STATE: IAppState = {
     apartmentsDash: [],
-    selectedApartmentID: undefined
+    selectedApartment: undefined
 
   }
   export const APARTMENTS_DASH_LOADED = "APARTMENTS_DASH_LOADED";
