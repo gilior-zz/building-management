@@ -1,10 +1,10 @@
 <!--<data-table></data-table>-->
-<div *ngFor="let apartment of apartments">
+<div *ngFor="let apartment of mainInfo">
   {{apartment.family}}
 </div>
 
 <mat-nav-list>
-  <mat-list-item *ngFor="let apartment of apartments">
+  <mat-list-item *ngFor="let apartment of mainInfo">
     <span>{{apartment.id}}</span>
     <span>{{apartment.family}}</span>
     <span>{{apartment.debt}}</span>

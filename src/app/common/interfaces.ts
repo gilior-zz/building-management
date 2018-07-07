@@ -1,9 +1,13 @@
 export interface Apartment {
+  apartmentsDash:ApartmentsDash,
+  apartmentInfo: ApartmentInfo[];
+  apartmentPayments: ApartmentPayments[];
+}
+
+export interface ApartmentsDash{
   id: number;
   floor: number,
   debt: number;
-  apartmentInfo: ApartmentInfo[];
-  apartmentPayments: ApartmentPayments[];
 }
 
 export interface ApartmentInfo {
@@ -22,8 +26,8 @@ export interface ApartmentPayments {
 }
 
 export interface IAppState {
-  apartments: Apartment[];
-  selectedApartmentID: number | undefined;
+  apartmentsDash: ApartmentsDash[];
+  selectedApartment: Apartment;
 }
 
 

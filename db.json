@@ -12,19 +12,23 @@
     },
     {
       "id": 3,
-      "floor": 2,
+      "floor": 3,
       "debt": 30
     },
     {
       "id": 4,
-      "floor": 3,
+      "floor": 4,
       "debt": 40
     }
   ],
   "apartments": [
     {
       "id": 1,
-      "debt": 0,
+      "apartmentsDash": {
+        "id": 1,
+        "floor": 1,
+        "debt": 10
+      },
       "apartmentInfo": [
         {
           "toDelete": false,
@@ -74,8 +78,11 @@
     },
     {
       "id": 2,
-      "debt": 10,
-      "status": "owner",
+      "apartmentsDash": {
+        "id": 2,
+        "floor": 21,
+        "debt": 10
+      },
       "apartmentInfo": [
         {
           "toDelete": false,
@@ -125,8 +132,11 @@
     },
     {
       "id": 3,
-      "debt": 30,
-      "status": "tenant",
+      "apartmentsDash": {
+        "id": 3,
+        "floor": 3,
+        "debt": 30
+      },
       "apartmentInfo": [
         {
           "toDelete": false,
@@ -175,8 +185,11 @@
     },
     {
       "id": 4,
-      "debt": 40,
-      "status": "tenant",
+      "apartmentsDash": {
+        "id": 4,
+        "floor": 4,
+        "debt": 40
+      },
       "apartmentInfo": [
         {
           "toDelete": false,

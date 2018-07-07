@@ -1,6 +1,6 @@
 <!--<h3><i>Using FormArray to add groups</i></h3>-->
 
-<form (ngSubmit)="onSubmit()" *ngIf="apartmentForm" [formGroup]="apartmentForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="apartmentForm">
   <!--<p>Form Changed: {{ apartmentForm.dirty }}</p>-->
   <div>
     <label><input readonly type="number" formControlName="debt"></label>

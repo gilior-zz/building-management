@@ -7,7 +7,7 @@ import {NgModule} from "@angular/core";
 let routes: Route[] = [
   {path: 'works', component: WorksComponent},
   {path: 'inbox', component: InboxComponent},
-  {path: '', redirectTo: 'apartments', pathMatch: 'full'},
+  {path: '', redirectTo: 'mainInfo', pathMatch: 'full'},
 ]
 
 

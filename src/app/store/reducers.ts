@@ -1,8 +1,9 @@
 import {IAppState} from "../common/interfaces";
 import {StoreConst} from "../common/const";
 import {FSA} from "flux-standard-action";
-import APARTMENTS_LOADED = StoreConst.APARTMENTS_LOADED;
+
 import APARTMENT_SELECTED = StoreConst.APARTMENT_SELECTED;
+import MAININFO_LOADED = StoreConst.APARTMENTS_DASH_LOADED;
 
 export type Payload = any;
 
@@ -12,13 +13,13 @@ export interface MetaData {
 
 export function rootReducer(lastState: IAppState, action: FSA<Payload, MetaData>): IAppState {
   switch (action.type) {
-    case APARTMENTS_LOADED:
+    case MAININFO_LOADED:
       let state = <IAppState>{...lastState};
-      state.apartments = action.payload
+      state.apartmentsDash = action.payload
       return state;
     case APARTMENT_SELECTED:
       state = <IAppState>{...lastState};
-      state.selectedApartmentID = action.payload
+      state.selectedApartment = action.payload
       return state;
   }
   return lastState;
