@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Apartment} from "../../common/interfaces";
+import {Apartment, ApartmentsDash} from "../../common/interfaces";
 import {ApartmentService} from "../../services/payments.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 
@@ -12,17 +12,17 @@ export class ApartmentsComponent implements OnInit {
   constructor(private  apartmentService: ApartmentService) {
   }
 
-  // apartments: Apartment[] = [];
+  // mainInfo: Apartment[] = [];
 
-  get apartments(): Apartment[] {
-    return this.apartmentService.apartments;
+  get apartmentsDash(): ApartmentsDash[] {
+    return this.apartmentService.apartmentsDash;
   }
 
   ngOnInit() {
 
     this.apartmentService.getApartments();
-    // .subscribe((apartments) => {
-    //   this.apartments = apartments;
+    // .subscribe((mainInfo) => {
+    //   this.mainInfo = mainInfo;
     // })
   }
 

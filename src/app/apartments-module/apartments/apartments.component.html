@@ -1,11 +1,11 @@
 <!--<data-table></data-table>-->
 
 <mat-nav-list>
-  <mat-list-item *ngFor="let apartment of apartments">
-    <span>#{{apartment.id}}</span>
+  <mat-list-item *ngFor="let apartmentDash of apartmentsDash">
+    <span>#{{apartmentDash.id}}</span>
     <span>חוב לוועד בנין</span>
-    <span>{{apartment.debt}}</span>
-    <a mat-icon-button routerLink="{{apartment.id}}">
+    <span>{{apartmentDash.debt}}</span>
+    <a mat-icon-button routerLink="{{apartmentDash.id}}">
       <mat-icon>info</mat-icon>
     </a>
   </mat-list-item>

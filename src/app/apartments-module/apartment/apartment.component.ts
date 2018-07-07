@@ -36,15 +36,15 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = +params.get('id');
-      this.apartmentService.setSelectedApartment(id);
+      this.apartmentService.loadSelectedApartmentDetails(id);
     })
   }
 
   rebuildForm() {
     this.apartmentForm.reset({
-      id: this.apartmentService.selectedApartment.id,
-      floor: this.apartmentService.selectedApartment.floor,
-      debt: this.apartmentService.selectedApartment.debt,
+      id: this.apartmentService.selectedApartment.apartmentsDash.id,
+      floor: this.apartmentService.selectedApartment.apartmentsDash.floor,
+      debt: this.apartmentService.selectedApartment.apartmentsDash.debt,
     });
     this.setInfos(this.apartmentService.selectedApartment.apartmentInfo);
   }
