@@ -1,0 +1,12 @@
+<form (ngSubmit)="onLoginRequest()" [formGroup]="loginForm">
+  <div>
+    <label>אי מייל</label>
+    <input type="text" formControlName="email">
+  </div>
+  <div>
+    <label>טלפון</label>
+    <input type="text" formControlName="phone">
+  </div>
+
+<button type="submit">Login</button>
+</form>

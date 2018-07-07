@@ -10,6 +10,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {ApartmentsModule} from "./apartments-module/apartments.module";
 import {SharedModule} from "./common/shared.module";
 import {StoreModule} from "./store/store.module";
+import { LoginComponent } from './login/login.component';
+import {AuthService} from "./services/auth.service";
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import {StoreModule} from "./store/store.module";
     WorksComponent,
     InboxComponent,
     TableComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -29,7 +32,7 @@ import {StoreModule} from "./store/store.module";
     BrowserModule,
     AppRoutesModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
