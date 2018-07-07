@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.isLoggedIn = false;
+     localStorage.setItem('isLoggedIn', JSON.stringify(false))
   }
 
   onLoginRequest() {
@@ -26,9 +28,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, phone)
       .subscribe(() => {
         let url = this.authService.redirectUrl;
+        let apartments = '/apartments';
         let login = '/login';
         if (this.authService.isLoggedIn) {
-          let goTo = url || login;
+          let goTo = url || apartments;
+          // localStorage.setItem('isLoggedIn', JSON.stringify(true))
           this.router.navigate([goTo])
         }
         else
