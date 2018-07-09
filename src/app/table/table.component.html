@@ -1,58 +1,50 @@
 <div class="example-container mat-elevation-z8">
-  <div class="example-loading-shade"
-       *ngIf="isLoadingResults || isRateLimitReached">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-      GitHub's API rate limit has been reached. It will be reset in one minute.
-    </div>
-  </div>
+  <!--<div class="example-loading-shade"-->
+  <!--*ngIf="isLoadingResults || isRateLimitReached">-->
+  <!--<mat-spinner *ngIf="isLoadingResults"></mat-spinner>-->
+  <!--<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">-->
+  <!--GitHub's API rate limit has been reached. It will be reset in one minute.-->
+  <!--</div>-->
+  <!--</div>-->
 
   <div class="example-table-container">
 
-    <table mat-table [dataSource]="data" class="example-table"
-           matSort #foo matSortActive="created" matSortDisableClear matSortDirection="asc">
+    <mat-table [dataSource]="apartmentsDash" class="example-table"
+               matSort #foo matSortActive="created" matSortDisableClear matSortDirection="asc">
       <!-- Number Column -->
-      <ng-container matColumnDef="userId">
-        <th mat-header-cell *matHeaderCellDef>userId</th>
-        <td mat-cell *matCellDef="let row">{{ row.userId }}</td>
-      </ng-container>
+
 
       <!-- Title Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>id</th>
-        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+        <mat-header-cell *matHeaderCellDef>מספר דירה</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
       </ng-container>
 
       <!-- State Column -->
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>title</th>
-        <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+      <ng-container matColumnDef="floor">
+        <mat-header-cell *matHeaderCellDef>קומה</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.floor }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="body">
-        <th mat-header-cell *matHeaderCellDef>body</th>
-        <td mat-cell *matCellDef="let row">{{ row.body }}</td>
-      </ng-container>
-      <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-          <div class="example-element-detail">
-            <div class="example-element-diagram">
-              <div class="example-element-position"> {{element.position}}</div>
-              <div class="example-element-symbol"> {{element.symbol}}</div>
-              <div class="example-element-name"> {{element.name}}</div>
-              <div class="example-element-weight"> {{element.weight}}</div>
-            </div>
-            <div class="example-element-description">
-              {{element.description}}
-              <span class="example-element-description-attribution"> -- Wikipedia </span>
-            </div>
-          </div>
-        </td>
+      <ng-container matColumnDef="debt">
+        <mat-header-cell *matHeaderCellDef>יתרת חוב</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.debt }}</mat-cell>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <a mat-icon-button routerLink="{{row.id}}">
+            <mat-icon>info</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
   </div>
 
   <!--<mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>-->

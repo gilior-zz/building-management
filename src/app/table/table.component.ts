@@ -2,6 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort} from '@angular/material';
 import {Observable} from 'rxjs';
+import {ApartmentsDash} from "../common/interfaces";
+import {ApartmentService} from "../services/payments.service";
 
 /**
  * @title Table retrieving data through HTTP
@@ -12,16 +14,20 @@ import {Observable} from 'rxjs';
   templateUrl: './table.component.html',
 })
 export class TableComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['userId', 'id', 'title', 'body'];
+  displayedColumns = ['id', 'floor', 'debt', 'select'];
   exampleDatabase: ExampleHttpDao | null;
-  data: GithubIssue[] = [];
+  // data: GithubIssue[] = [];
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private  apartmentService: ApartmentService) {
+  }
+
+  get apartmentsDash(): ApartmentsDash[] {
+    return this.apartmentService.apartmentsDash;
   }
 
   ngAfterViewInit(): void {
@@ -29,12 +35,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.exampleDatabase = new ExampleHttpDao(this.http);
-    this.exampleDatabase.getData()
-      .subscribe((data => {
-        this.data = data;
-        this.isLoadingResults=false;
-      }))
+    // this.exampleDatabase = new ExampleHttpDao(this.http);
+    // this.exampleDatabase.getData()
+    //   .subscribe((data => {
+    //     this.data = data;
+    //     this.isLoadingResults = false;
+    //   }))
     // If the user changes the sort order, reset back to the first page.
 
     // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);

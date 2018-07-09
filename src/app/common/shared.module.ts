@@ -1,7 +1,8 @@
 import {NgModule} from "@angular/core";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
-  MatButtonModule, MatIconModule, MatListModule, MatPaginatorModule, MatProgressSpinnerModule, MatSidenavModule,
+  MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
+  MatSidenavModule,
   MatTableModule,
   MatToolbarModule,
 
@@ -19,6 +20,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatListModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    MatCheckboxModule,
     MatPaginatorModule,ReactiveFormsModule]
 })
 export class SharedModule {
