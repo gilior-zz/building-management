@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         let url = this.authService.redirectUrl;
         let apartments = '/apartments';
         let login = '/login';
-        if (this.authService.isLoggedIn) {
+        if (this.authService.user) {
           let goTo = url || apartments;
           // localStorage.setItem('isLoggedIn', JSON.stringify(true))
           this.router.navigate([goTo])

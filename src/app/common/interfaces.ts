@@ -30,4 +30,9 @@ export interface IAppState {
   selectedApartment: Apartment;
 }
 
+export interface User{
+  email:string;
+  phone:string
+}
+
 

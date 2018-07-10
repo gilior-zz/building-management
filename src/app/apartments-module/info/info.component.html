@@ -1,0 +1,25 @@
+<div [formGroup]="abstractControl">
+  <h4>איש קשר #{{index + 1}}
+    <button [disabled]="!isCurrentUser" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>
+  </h4>
+  <div>
+    <label>שם:
+      <input [readonly]="!isCurrentUser" type="text" formControlName="name">
+    </label>
+  </div>
+  <div>
+    <label>טלפון:
+      <input [readonly]="!isCurrentUser" type="text" formControlName="phone">
+    </label>
+  </div>
+
+  <div>
+    <label>אי מייל:
+      <input [readonly]="!isCurrentUser" type="email" formControlName="email">
+    </label>
+  </div>
+  <div>בעלות:</div>
+  <label><input type="radio" formControlName="status" value="tenant">דייר</label>
+  <label><input type="radio" formControlName="status" value="owner">בעל דירה</label>
+
+</div>

@@ -4,6 +4,7 @@ import {Apartment, ApartmentInfo} from "../../common/interfaces";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ApartmentService} from "../../services/payments.service";
 import {Subscription} from "rxjs/Rx";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'apartment',
@@ -17,13 +18,17 @@ export class ApartmentComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
-              private  apartmentService: ApartmentService) {
+              public  apartmentService: ApartmentService,
+              private  authService:AuthService) {
     this.createForm();
     this.subscription = this.apartmentService.selectedApartmentdSource$.subscribe(() => {
       this.rebuildForm();
+
     })
 
   }
+
+
 
   get apartmentInfo(): FormArray {
     return this.apartmentForm.get('apartmentInfo') as FormArray;

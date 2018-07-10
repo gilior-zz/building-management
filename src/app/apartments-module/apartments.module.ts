@@ -5,12 +5,13 @@ import {ApartmentRoutesModule} from "./apartments-routes";
 import {SharedModule} from "../common/shared.module";
 import { ApartmentDetailsComponent } from './apartment-details/apartment-details.component';
 import {TableComponent} from "../table/table.component";
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   imports:[SharedModule, ApartmentRoutesModule],
   declarations: [ApartmentsComponent,
     ApartmentComponent,
-    ApartmentDetailsComponent, TableComponent],
+    ApartmentDetailsComponent, TableComponent, InfoComponent],
 
 })
 export class ApartmentsModule {

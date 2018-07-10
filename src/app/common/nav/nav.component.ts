@@ -23,7 +23,7 @@ export class NavComponent {
 
 
   get isLoggedIn():boolean{
-    return this.authService.isLoggedIn;
+    return this.authService.user!==undefined;
   }
 
   onOpenedChange(isOpen: boolean) {

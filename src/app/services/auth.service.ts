@@ -3,35 +3,37 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {delay, tap} from 'rxjs/operators';
 import {Router} from "@angular/router";
+import {User} from "../common/interfaces";
 
 @Injectable()
 export class AuthService {
 
-  isLoggedIn = false;
+  user: User;
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
   // isLoggedIn = Boolean(localStorage.getItem('isLoggedIn') || false);
 
   constructor(private router: Router) {
-    let isLoggedIn = localStorage.getItem('isLoggedIn')
-    if (isLoggedIn === 'true')
-      this.isLoggedIn = true;
+    let user = localStorage.getItem('user')
+    if (user) {
+      this.user = JSON.parse(user) as User
+    }
   }
 
   login(email: string, phone: string): Observable<boolean> {
     return of(true).pipe(
       delay(1000),
       tap(val => {
-        localStorage.setItem('isLoggedIn', JSON.stringify(true))
-        this.isLoggedIn = true
+        localStorage.setItem('user', JSON.stringify(<User>{email, phone}))
+        this.user = {phone, email}
       })
     );
   }
 
   logout(): void {
-    localStorage.setItem('isLoggedIn', JSON.stringify(false))
-    this.isLoggedIn = false;
+    localStorage.clear();
+    this.user = undefined;
     this.router.navigate(['/login']);
   }
 }
