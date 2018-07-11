@@ -1,17 +1,19 @@
 export interface Apartment {
-  apartmentsDash:ApartmentsDash,
+  apartmentsDash: ApartmentsDash,
   apartmentInfo: ApartmentInfo[];
   apartmentPayments: ApartmentPayments[];
 }
 
-export interface ApartmentsDash{
+export interface ApartmentsDash {
   id: number;
   floor: number,
   debt: number;
 }
 
 export interface ApartmentInfo {
-  toDelete:boolean;
+  toDelete: boolean;
+  isNew: boolean
+  apartmentID: number,
   id: number,
   name: string;
   phone: string;
@@ -28,11 +30,18 @@ export interface ApartmentPayments {
 export interface IAppState {
   apartmentsDash: ApartmentsDash[];
   selectedApartment: Apartment;
+  metaData: MetaData
 }
 
-export interface User{
-  email:string;
-  phone:string
+export interface MetaData {
+  lastUpdateTime: Date;
 }
+
+export interface User {
+  email: string;
+  phone: string
+}
+
+
 
 

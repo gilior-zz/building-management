@@ -12,6 +12,7 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
+
   // isLoggedIn = Boolean(localStorage.getItem('isLoggedIn') || false);
 
   constructor(private router: Router) {
@@ -19,6 +20,7 @@ export class AuthService {
     if (user) {
       this.user = JSON.parse(user) as User
     }
+
   }
 
   login(email: string, phone: string): Observable<boolean> {
