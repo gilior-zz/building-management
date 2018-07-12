@@ -1,25 +1,27 @@
 export interface Apartment {
-  apartmentsDash:ApartmentsDash,
-  apartmentInfo: ApartmentInfo[];
+  apartmentsDash: ApartmentsDash,
+  apartmentInfo: ApartmentTenants[];
   apartmentPayments: ApartmentPayments[];
 }
 
-export interface ApartmentsDash{
+export interface ApartmentsDash {
   id: number;
   floor: number,
   debt: number;
 }
 
-export interface ApartmentInfo {
-  toDelete:boolean;
+export interface ApartmentTenants {
+  toDelete: boolean;
   id: number,
   name: string;
+  family: string;
   phone: string;
   email: string;
   status: 'tenant' | 'owner'
 }
 
 export interface ApartmentPayments {
+  id: number;
   year: number;
   month: number;
   payment: number;
@@ -30,9 +32,9 @@ export interface IAppState {
   selectedApartment: Apartment;
 }
 
-export interface User{
-  email:string;
-  phone:string
+export interface User {
+  email: string;
+  phone: string
 }
 
 

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Apartment, ApartmentInfo} from "../../common/interfaces";
+import {Apartment, ApartmentTenants} from "../../common/interfaces";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ApartmentService} from "../../services/payments.service";
 import {Subscription} from "rxjs/Rx";
@@ -78,14 +78,14 @@ export class ApartmentComponent implements OnInit, OnDestroy {
     });
   }
 
-  setInfos(apartmentInfo: ApartmentInfo[]) {
+  setInfos(apartmentInfo: ApartmentTenants[]) {
     const infos = apartmentInfo.map(info => this.fb.group(info));
     const infosFormArray = this.fb.array(infos);
     this.apartmentForm.setControl('apartmentInfo', infosFormArray);
   }
 
   addInfo() {
-    this.apartmentInfo.push(this.fb.group(<ApartmentInfo>{
+    this.apartmentInfo.push(this.fb.group(<ApartmentTenants>{
       name: '',
       email: '',
       phone: '',
