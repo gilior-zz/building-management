@@ -4,7 +4,7 @@ export interface Apartment {
   apartmentPayments: ApartmentPayments[];
 }
 
-export interface ApartmentsDash {
+export interface ApartmentsDash{
   id: number;
   floor: number,
   debt: number;
@@ -13,6 +13,8 @@ export interface ApartmentsDash {
 export interface ApartmentTenants {
   toDelete: boolean;
   id: number,
+  isNew: boolean
+  apartmentID: number,
   name: string;
   family: string;
   phone: string;
@@ -30,6 +32,11 @@ export interface ApartmentPayments {
 export interface IAppState {
   apartmentsDash: ApartmentsDash[];
   selectedApartment: Apartment;
+  metaData: MetaData
+}
+
+export interface MetaData {
+  lastUpdateTime: Date;
 }
 
 export interface User {

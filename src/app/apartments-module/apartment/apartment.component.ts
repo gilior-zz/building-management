@@ -19,7 +19,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               public  apartmentService: ApartmentService,
-              private  authService:AuthService) {
+              private  authService: AuthService) {
     this.createForm();
     this.subscription = this.apartmentService.selectedApartmentdSource$.subscribe(() => {
       this.rebuildForm();
@@ -27,7 +27,6 @@ export class ApartmentComponent implements OnInit, OnDestroy {
     })
 
   }
-
 
 
   get apartmentInfo(): FormArray {
@@ -90,8 +89,9 @@ export class ApartmentComponent implements OnInit, OnDestroy {
       email: '',
       phone: '',
       status: 'tenant',
-      id: -1,
-      toDelete: false
+      id: this.apartmentService.selectedApartment.apartmentsDash.id,
+      toDelete: false,
+      isNew: true
     }));
   }
 

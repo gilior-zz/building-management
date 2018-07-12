@@ -3,6 +3,7 @@ import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/lay
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {AuthService} from "../../services/auth.service";
+import {MetaDataService} from "../../services/meta-data.service";
 
 @Component({
   selector: 'nav',
@@ -18,12 +19,17 @@ export class NavComponent {
   public margin: number = 0;
 
   constructor(private breakpointObserver: BreakpointObserver,
-              private  authService:AuthService) {
+              private  authService: AuthService,
+              private metaDataService: MetaDataService) {
+  }
+
+  get lastUpdateTime(): Date {
+    return this.metaDataService.metaData.lastUpdateTime;
   }
 
 
-  get isLoggedIn():boolean{
-    return this.authService.user!==undefined;
+  get isLoggedIn(): boolean {
+    return this.authService.user !== undefined;
   }
 
   onOpenedChange(isOpen: boolean) {

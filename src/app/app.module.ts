@@ -12,6 +12,7 @@ import {SharedModule} from "./common/shared.module";
 import {StoreModule} from "./store/store.module";
 import { LoginComponent } from './login/login.component';
 import {AuthService} from "./services/auth.service";
+import {MetaDataService} from "./services/meta-data.service";
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import {AuthService} from "./services/auth.service";
     BrowserModule,
     AppRoutesModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,MetaDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

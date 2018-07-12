@@ -28,6 +28,8 @@
       <span>ניהול הבניין</span>
       <!--<a  [routerLink]="['/login']">יציאה</a>-->
       <button *ngIf="isLoggedIn"  (click)="onLogOut()">יציאה</button>
+      <span>{{lastUpdateTime}}</span>
+      <span ></span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
