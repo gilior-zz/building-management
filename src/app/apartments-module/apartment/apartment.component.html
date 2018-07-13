@@ -10,8 +10,8 @@
   <div>
   </div>
   <br><br>
-  <div formArrayName="apartmentInfo">
-    <div *ngFor="let info of apartmentInfo.controls; let i=index" [formGroupName]="i">
+  <div formArrayName="apartmentTenants">
+    <div *ngFor="let info of apartmentTenants.controls; let i=index" [formGroupName]="i">
       <!-- The repeated info template -->
       <info [abstractControl]="info" [index]="i"></info>
       <br>

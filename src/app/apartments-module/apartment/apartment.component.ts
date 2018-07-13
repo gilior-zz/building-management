@@ -5,6 +5,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ApartmentService} from "../../services/payments.service";
 import {Subscription} from "rxjs/Rx";
 import {AuthService} from "../../services/auth.service";
+import {uniqueEmailPhoneValidator} from "./uniqe-email-phone.directive";
 
 @Component({
   selector: 'apartment',
@@ -30,8 +31,8 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
 
-  get apartmentInfo(): FormArray {
-    return this.apartmentForm.get('apartmentInfo') as FormArray;
+  get apartmentTenants(): FormArray {
+    return this.apartmentForm.get('apartmentTenants') as FormArray;
   };
 
   ngOnDestroy(): void {
@@ -47,10 +48,11 @@ export class ApartmentComponent implements OnInit, OnDestroy {
 
   rebuildForm() {
     this.apartmentForm.reset({
-      id: this.apartmentService.selectedApartment.apartmentsDash.id,
-      floor: this.apartmentService.selectedApartment.apartmentsDash.floor,
-      debt: this.apartmentService.selectedApartment.apartmentsDash.debt,
-    });
+        id: this.apartmentService.selectedApartment.apartmentsDash.id,
+        floor: this.apartmentService.selectedApartment.apartmentsDash.floor,
+        debt: this.apartmentService.selectedApartment.apartmentsDash.debt
+      },
+      );
     this.setInfos(this.apartmentService.selectedApartment.apartmentTenants.map(i => {
       return <ApartmentTenant>{...i, toDelete: false}
     }));
@@ -74,28 +76,28 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   createForm() {
     this.apartmentForm = this.fb.group({
       id: [''],
-      apartmentInfo: this.fb.array([]), // <-- secretLairs as an empty FormArray
+      apartmentTenants: this.fb.array([]), // <-- secretLairs as an empty FormArray
       status: [''],
       debt: ['']
-    });
+    }, {validators: uniqueEmailPhoneValidator});
   }
 
-  setInfos(apartmentInfo: ApartmentTenant[]) {
-    const infos = apartmentInfo.map(info => this.fb.group(info));
+  setInfos(apartmentTenants: ApartmentTenant[]) {
+    const infos = apartmentTenants.map(info => this.fb.group(info));
     infos.forEach(i => {
-      for (let control in i.controls) {
-        if (this.requiredFields.indexOf(control) != -1)
-          i.get(control).setValidators(Validators.required)
+        for (let control in i.controls) {
+          if (this.requiredFields.indexOf(control) != -1)
+            i.get(control).setValidators(Validators.required)
+        }
       }
-    }
-
+    )
 
     const infosFormArray = this.fb.array(infos);
-    this.apartmentForm.setControl('apartmentInfo', infosFormArray);
+    this.apartmentForm.setControl('apartmentTenants', infosFormArray);
   }
 
   addInfo() {
-    this.apartmentInfo.push(this.fb.group(<ApartmentTenant>{
+    this.apartmentTenants.push(this.fb.group(<ApartmentTenant>{
       name: '',
       family: '',
       email: '',
@@ -108,13 +110,4 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
 
-  toggleDeleted(i: number) {
-    let markAsDeleted = !this.apartmentInfo.at(i).get('toDelete').value;
-    this.apartmentInfo.at(i).get('toDelete').setValue(markAsDeleted);
-  }
-
-  getActionBtnTxt(i: number) {
-    let markAsDeleted = this.apartmentInfo.at(i).get('toDelete').value;
-    return markAsDeleted ? 'ביטול' : 'הסרת איש קשר'
-  }
 }
