@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Apartment, ApartmentTenants} from "../../common/interfaces";
+import {Apartment, ApartmentTenant} from "../../common/interfaces";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ApartmentService} from "../../services/payments.service";
 import {Subscription} from "rxjs/Rx";
@@ -12,6 +12,7 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./apartment.component.scss']
 })
 export class ApartmentComponent implements OnInit, OnDestroy {
+  requiredFields: Array<string> = ['name', 'mail', 'family', 'phone']
   private apartmentForm: FormGroup;
   private apartment: Apartment = this.apartmentService.selectedApartment;
   private subscription: Subscription;
@@ -50,7 +51,9 @@ export class ApartmentComponent implements OnInit, OnDestroy {
       floor: this.apartmentService.selectedApartment.apartmentsDash.floor,
       debt: this.apartmentService.selectedApartment.apartmentsDash.debt,
     });
-    this.setInfos(this.apartmentService.selectedApartment.apartmentInfo);
+    this.setInfos(this.apartmentService.selectedApartment.apartmentTenants.map(i => {
+      return <ApartmentTenant>{...i, toDelete: false}
+    }));
   }
 
   onSubmit() {
@@ -65,27 +68,36 @@ export class ApartmentComponent implements OnInit, OnDestroy {
         return {...info}
       }
     );
-    return <Apartment>{apartmentsDash: {id: id}, apartmentInfo: apartmentInfo};
+    return <Apartment>{apartmentsDash: {id: id}, apartmentTenants: apartmentInfo};
   }
 
   createForm() {
     this.apartmentForm = this.fb.group({
-      id: ['', Validators.required],
+      id: [''],
       apartmentInfo: this.fb.array([]), // <-- secretLairs as an empty FormArray
-      status: ['', Validators.required],
-      debt: ['', Validators.required]
+      status: [''],
+      debt: ['']
     });
   }
 
-  setInfos(apartmentInfo: ApartmentTenants[]) {
+  setInfos(apartmentInfo: ApartmentTenant[]) {
     const infos = apartmentInfo.map(info => this.fb.group(info));
+    infos.forEach(i => {
+      for (let control in i.controls) {
+        if (this.requiredFields.indexOf(control) != -1)
+          i.get(control).setValidators(Validators.required)
+      }
+    }
+
+
     const infosFormArray = this.fb.array(infos);
     this.apartmentForm.setControl('apartmentInfo', infosFormArray);
   }
 
   addInfo() {
-    this.apartmentInfo.push(this.fb.group(<ApartmentTenants>{
+    this.apartmentInfo.push(this.fb.group(<ApartmentTenant>{
       name: '',
+      family: '',
       email: '',
       phone: '',
       status: 'tenant',

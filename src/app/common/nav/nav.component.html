@@ -25,7 +25,9 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>ניהול הבניין</span>
+      <span>שלום</span>
+      <span>{{currentUser?.name}}</span>
+      <span>{{currentUser?.family}}</span>
       <!--<a  [routerLink]="['/login']">יציאה</a>-->
       <button *ngIf="isLoggedIn"  (click)="onLogOut()">יציאה</button>
       <span>{{lastUpdateTime}}</span>

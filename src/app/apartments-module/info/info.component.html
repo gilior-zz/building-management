@@ -3,8 +3,13 @@
     <button [disabled]="!isCurrentUser" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>
   </h4>
   <div>
-    <label>שם:
+    <label>שם פרטי:
       <input [readonly]="!isCurrentUser" type="text" formControlName="name">
+    </label>
+  </div>
+  <div>
+    <label>שם משפחה:
+      <input [readonly]="!isCurrentUser" type="text" formControlName="family">
     </label>
   </div>
   <div>

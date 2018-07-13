@@ -6,15 +6,16 @@ import {StoreConst} from "../common/const";
 import {Subject} from "rxjs/Rx";
 import APARTMENT_SELECTED = StoreConst.APARTMENT_SELECTED;
 import MAININFO_LOADED = StoreConst.APARTMENTS_DASH_LOADED;
+import API_URL = StoreConst.API_URL;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApartmentService {
 
-  url = ' http://localhost:3000/';
-  apartmentsDashUrl = `${this.url}apartmentsDash`;
-  apartmentUrl = `${this.url}apartments/`;
+
+  apartmentsDashUrl = `${API_URL}apartmentsDash`;
+  apartmentUrl = `${API_URL}apartments/`;
   apartmentsDash: ApartmentsDash[];
   public selectedApartment: Apartment;
   private selectedApartmentdSource = new Subject<void>();

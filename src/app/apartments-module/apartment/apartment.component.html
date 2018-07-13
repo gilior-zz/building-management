@@ -19,7 +19,8 @@
     </div>
     <button (click)="addInfo()" type="button">הוספת איש קשר</button>
   </div>
-  <button type="submit">שמירה</button>
+  <button [disabled]="apartmentForm.status=='INVALID'" type="submit">שמירה</button>
+  apartmentForm.status {{apartmentForm.status}}
 </form>
 
 

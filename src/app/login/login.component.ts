@@ -25,19 +25,19 @@ export class LoginComponent implements OnInit {
   onLoginRequest() {
     let email = this.loginForm.value.email;
     let phone = this.loginForm.value.phone;
-    this.authService.login(email, phone)
-      .subscribe(() => {
-        let url = this.authService.redirectUrl;
-        let apartments = '/apartments';
-        let login = '/login';
-        if (this.authService.user) {
-          let goTo = url || apartments;
-          // localStorage.setItem('isLoggedIn', JSON.stringify(true))
-          this.router.navigate([goTo])
-        }
-        else
-          this.router.navigate([login])
-      })
+    this.authService.login(email, phone);
+      // .subscribe(() => {
+      //   let url = this.authService.redirectUrl;
+      //   let apartments = '/apartments';
+      //   let login = '/login';
+      //   if (this.authService.user) {
+      //     let goTo = url || apartments;
+      //     // localStorage.setItem('isLoggedIn', JSON.stringify(true))
+      //     this.router.navigate([goTo])
+      //   }
+      //   else
+      //     this.router.navigate([login])
+      // })
   }
 
   private buildForm() {

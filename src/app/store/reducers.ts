@@ -1,10 +1,11 @@
 import {IAppState} from "../common/interfaces";
 import {StoreConst} from "../common/const";
 import {FSA} from "flux-standard-action";
-
 import APARTMENT_SELECTED = StoreConst.APARTMENT_SELECTED;
 import MAININFO_LOADED = StoreConst.APARTMENTS_DASH_LOADED;
 import META_DATA_LOADED = StoreConst.META_DATA_LOADED;
+
+import USER_STATUS_CHANGED = StoreConst.USER_STATUS_CHANGED;
 
 export type Payload = any;
 
@@ -25,6 +26,10 @@ export function rootReducer(lastState: IAppState, action: FSA<Payload, MetaData>
     case META_DATA_LOADED:
       state = <IAppState>{...lastState};
       state.metaData = action.payload;
+      return state;
+    case USER_STATUS_CHANGED:
+      state = <IAppState>{...lastState};
+      state.user = action.payload;
       return state;
   }
   return lastState;

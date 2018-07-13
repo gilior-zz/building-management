@@ -29,27 +29,27 @@
         "floor": 1,
         "debt": 10
       },
-      "apartmentInfo": [
+      "apartmentTenants": [
         {
-          "toDelete": false,
           "id": 1,
           "name": "name a",
+          "family": "family a",
           "phone": "phone a",
           "email": "email a",
           "status": "tenant"
         },
         {
-          "toDelete": false,
           "id": 2,
           "name": "name b",
+          "family": "family b",
           "phone": "phone b",
           "email": "email b",
           "status": "tenant"
         },
         {
-          "toDelete": false,
           "id": 3,
           "name": "name c",
+          "family": "family c",
           "phone": "phone c",
           "email": "email c",
           "status": "tenant"
@@ -83,27 +83,27 @@
         "floor": 21,
         "debt": 10
       },
-      "apartmentInfo": [
+      "apartmentTenants": [
         {
-          "toDelete": false,
           "id": 4,
           "name": "name a",
+          "family": "family a",
           "phone": "phone a",
           "email": "email a",
           "status": "tenant"
         },
         {
-          "toDelete": false,
           "id": 5,
           "name": "name b",
+          "family": "family c",
           "phone": "phone b",
           "email": "email b",
           "status": "tenant"
         },
         {
-          "toDelete": false,
           "id": 6,
           "name": "name c",
+          "family": "family c",
           "phone": "phone c",
           "email": "email c",
           "status": "tenant"
@@ -137,27 +137,27 @@
         "floor": 3,
         "debt": 30
       },
-      "apartmentInfo": [
+      "apartmentTenants": [
         {
-          "toDelete": false,
           "id": 7,
           "name": "name a",
+          "family": "family a",
           "phone": "phone a",
           "email": "email a",
           "status": "tenant"
         },
         {
-          "toDelete": false,
           "id": 8,
           "name": "name b",
+          "family": "family b",
           "phone": "phone b",
           "email": "email b",
           "status": "tenant"
         },
         {
-          "toDelete": false,
           "id": 9,
           "name": "name c",
+          "family": "family c",
           "phone": "phone c",
           "email": "email c",
           "status": "tenant"
@@ -190,27 +190,27 @@
         "floor": 4,
         "debt": 40
       },
-      "apartmentInfo": [
+      "apartmentTenants": [
         {
-          "toDelete": false,
           "id": 10,
           "name": "name a",
+          "family": "family a",
           "phone": "phone a",
           "email": "email a",
           "status": "tenant"
         },
         {
-          "toDelete": false,
           "id": 11,
           "name": "name b",
+          "family": "family b",
           "phone": "phone b",
           "email": "email b",
           "status": "tenant"
         },
         {
-          "toDelete": false,
           "id": 12,
           "name": "name c",
+          "family": "family c",
           "phone": "phone c",
           "email": "email c",
           "status": "tenant"

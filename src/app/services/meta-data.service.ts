@@ -4,10 +4,11 @@ import {IAppState, MetaData} from "../common/interfaces";
 import {HttpClient} from "@angular/common/http";
 import {StoreConst} from "../common/const";
 import META_DATA_LOADED = StoreConst.META_DATA_LOADED;
+import API_URL = StoreConst.API_URL;
 
 @Injectable()
 export class MetaDataService {
-  url = ' http://localhost:3000/metaData';
+  url = `${API_URL}metaData`;
 
   public metaData: MetaData;
 
@@ -21,6 +22,6 @@ export class MetaDataService {
         })
       })
     this.ngRedux.select('metaData')
-      .subscribe(i => this.metaData = i)
+      .subscribe((metaData: MetaData) => this.metaData = metaData)
   }
 }
