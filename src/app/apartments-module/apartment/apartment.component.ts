@@ -35,6 +35,15 @@ export class ApartmentComponent implements OnInit, OnDestroy {
     return this.apartmentForm.get('apartmentTenants') as FormArray;
   };
 
+  get currentUser(): ApartmentTenant {
+    return this.authService.user
+  }
+
+  get userBelongsToApartment(): boolean {
+    let res = this.apartmentService.containsTenant(this.currentUser);
+    return res;
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

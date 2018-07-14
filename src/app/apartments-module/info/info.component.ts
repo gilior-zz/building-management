@@ -12,18 +12,20 @@ export class InfoComponent implements OnInit, OnChanges {
   @Input() abstractControl: AbstractControl
   private phone: string;
   private email: string;
+  private id: number;
+  private isNew = false;
 
   constructor(private authService: AuthService) {
   }
 
-  get isCurrentUser(): boolean {
+  get currentUserDetails(): boolean {
+    let userID = this.authService.user.id;
+    let currentUserDetails = userID === this.id;
+    return currentUserDetails;
+  }
 
-    let userEmail = this.authService.user.email;
-    let userPhone = this.authService.user.phone;
-    let samePhone = this.phone === userPhone;
-    let sameEamil = this.email === userEmail;
-    let sameSame = samePhone && sameEamil;
-    return sameSame;
+  get disableInput(): boolean {
+    return !(this.currentUserDetails || this.isNew);
   }
 
   get actionBtnTxt(): string {
@@ -35,6 +37,8 @@ export class InfoComponent implements OnInit, OnChanges {
     if (changes['abstractControl'].isFirstChange()) {
       this.phone = this.abstractControl.get('phone').value;
       this.email = this.abstractControl.get('email').value;
+      this.id = +this.abstractControl.get('id').value;
+      this.isNew = this.abstractControl.get('isNew').value === 'true';
     }
   }
 

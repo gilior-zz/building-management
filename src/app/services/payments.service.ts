@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Apartment, ApartmentsDash, IAppState} from "../common/interfaces";
+import {Apartment, ApartmentsDash, ApartmentTenant, IAppState} from "../common/interfaces";
 import {NgRedux} from "@angular-redux/store";
 import {StoreConst} from "../common/const";
 import {Subject} from "rxjs/Rx";
@@ -25,8 +25,8 @@ export class ApartmentService {
     this.ngRedux.select('apartmentsDash').subscribe((apartmentsDash: ApartmentsDash[]) =>
       this.apartmentsDash = apartmentsDash);
     this.ngRedux.select('selectedApartment').subscribe((apartment: Apartment) => {
-          this.selectedApartment = apartment;
-          this.selectedApartmentdSource.next();
+        this.selectedApartment = apartment;
+        this.selectedApartmentdSource.next();
 
 
       }
@@ -59,5 +59,11 @@ export class ApartmentService {
 
   saveApartmentDetail(obj: Apartment) {
     console.log(obj);
+  }
+
+  containsTenant(apartmentTenant: ApartmentTenant): boolean {
+    let l = this.selectedApartment.apartmentTenants.filter(i => i.id === apartmentTenant.id);
+    let res = l.length > 0;
+    return res;
   }
 }

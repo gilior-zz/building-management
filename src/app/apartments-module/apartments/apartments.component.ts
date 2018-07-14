@@ -9,7 +9,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
   styleUrls: ['./apartments.component.scss']
 })
 export class ApartmentsComponent implements OnInit {
-  constructor(private  apartmentService: ApartmentService) {
+  constructor(public  apartmentService: ApartmentService) {
   }
 
   // mainInfo: Apartment[] = [];

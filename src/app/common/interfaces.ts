@@ -19,7 +19,7 @@ export interface ApartmentTenant {
   family: string;
   phone: string;
   email: string;
-  status: 'tenant' | 'owner'
+  status: 'tenant' | 'owner';
 }
 
 export interface ApartmentPayment {
@@ -33,7 +33,7 @@ export interface IAppState {
   apartmentsDash: ApartmentsDash[];
   selectedApartment: Apartment;
   metaData: MetaData,
-  user:ApartmentTenant
+  user: ApartmentTenant
 }
 
 export interface MetaData {

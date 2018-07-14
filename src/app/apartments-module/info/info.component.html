@@ -1,26 +1,26 @@
-<div [formGroup]="abstractControl">
+<div  [formGroup]="abstractControl">
   <h4>איש קשר #{{index + 1}}
-    <button [disabled]="!isCurrentUser" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>
+    <button [disabled]="disableInput" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>
   </h4>
   <div>
     <label>שם פרטי:
-      <input [readonly]="!isCurrentUser" type="text" formControlName="name">
+      <input [readonly]="disableInput" type="text" formControlName="name">
     </label>
   </div>
   <div>
     <label>שם משפחה:
-      <input [readonly]="!isCurrentUser" type="text" formControlName="family">
+      <input [readonly]="disableInput" type="text" formControlName="family">
     </label>
   </div>
   <div>
     <label>טלפון:
-      <input [readonly]="!isCurrentUser" type="text" formControlName="phone">
+      <input [readonly]="disableInput" type="text" formControlName="phone">
     </label>
   </div>
 
   <div>
     <label>אי מייל:
-      <input [readonly]="!isCurrentUser" type="email" formControlName="email">
+      <input [readonly]="disableInput" type="email" formControlName="email">
     </label>
   </div>
   <div>בעלות:</div>
