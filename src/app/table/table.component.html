@@ -9,29 +9,26 @@
 
   <div class="example-table-container">
 
-    <mat-table [dataSource]="apartmentsDash" class="example-table"
-               matSort #foo matSortActive="created" matSortDisableClear matSortDirection="asc">
-      <!-- Number Column -->
+    <mat-table [dataSource]="dataSource" class="example-table"
+               matSort #foo matSortActive="created"  matSortDirection="asc">
 
-
-      <!-- Title Column -->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>מספר דירה</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>מספר דירה</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
       </ng-container>
 
-      <!-- State Column -->
+
       <ng-container matColumnDef="floor">
-        <mat-header-cell *matHeaderCellDef>קומה</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>קומה</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.floor }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="debt">
-        <mat-header-cell *matHeaderCellDef>יתרת חוב</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>יתרת חוב</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.debt }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="select">
+      <ng-container matColumnDef="details">
         <mat-header-cell *matHeaderCellDef>
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
@@ -47,5 +44,5 @@
     </mat-table>
   </div>
 
-  <!--<mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>-->
+
 </div>

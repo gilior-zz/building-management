@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSortModule,
   MatTableModule,
   MatToolbarModule,
 
@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatIconModule,
     MatListModule,
     MatTableModule,
+    MatSortModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatPaginatorModule,ReactiveFormsModule]

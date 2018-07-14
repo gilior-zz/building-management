@@ -1,9 +1,10 @@
 import {HttpClient} from '@angular/common/http';
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Observable} from 'rxjs';
-import {ApartmentsDash} from "../common/interfaces";
+import {ApartmentsDash, IAppState} from "../common/interfaces";
 import {ApartmentService} from "../services/payments.service";
+import {NgRedux} from "@angular-redux/store";
 
 /**
  * @title Table retrieving data through HTTP
@@ -14,27 +15,34 @@ import {ApartmentService} from "../services/payments.service";
   templateUrl: './table.component.html',
 })
 export class TableComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['id', 'floor', 'debt', 'select'];
+  displayedColumns = ['id', 'floor', 'debt', 'details'];
   exampleDatabase: ExampleHttpDao | null;
-  // data: GithubIssue[] = [];
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  dataSource: MatTableDataSource<ApartmentsDash>
+  apartmentsDash: ApartmentsDash[];
 
-  constructor(private http: HttpClient, private  apartmentService: ApartmentService) {
+  constructor(private http: HttpClient,
+              private  apartmentService: ApartmentService,
+              private ngRedux: NgRedux<IAppState>) {
+    this.ngRedux.select('apartmentsDash').subscribe((apartmentsDash: ApartmentsDash[]) => {
+        this.apartmentsDash = apartmentsDash;
+        this.dataSource = new MatTableDataSource(this.apartmentService.apartmentsDash);
+        this.dataSource.sort = this.sort;
+      }
+    );
   }
 
-  get apartmentsDash(): ApartmentsDash[] {
-    return this.apartmentService.apartmentsDash;
-  }
 
   ngAfterViewInit(): void {
 
   }
 
   ngOnInit() {
+
     // this.exampleDatabase = new ExampleHttpDao(this.http);
     // this.exampleDatabase.getData()
     //   .subscribe((data => {

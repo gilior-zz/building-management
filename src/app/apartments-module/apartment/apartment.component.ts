@@ -52,7 +52,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
         floor: this.apartmentService.selectedApartment.apartmentsDash.floor,
         debt: this.apartmentService.selectedApartment.apartmentsDash.debt
       },
-      );
+    );
     this.setInfos(this.apartmentService.selectedApartment.apartmentTenants.map(i => {
       return <ApartmentTenant>{...i, toDelete: false}
     }));
@@ -66,7 +66,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   generateObj(): Apartment {
     let id = this.apartmentForm.value.id;
     let floor = this.apartmentForm.value.floor;
-    let apartmentInfo = this.apartmentForm.value.apartmentInfo.map(info => {
+    let apartmentInfo = this.apartmentForm.value.apartmentTenants.map(info => {
         return {...info}
       }
     );
