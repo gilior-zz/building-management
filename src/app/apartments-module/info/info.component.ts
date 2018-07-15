@@ -38,7 +38,7 @@ export class InfoComponent implements OnInit, OnChanges {
       this.phone = this.abstractControl.get('phone').value;
       this.email = this.abstractControl.get('email').value;
       this.id = +this.abstractControl.get('id').value;
-      this.isNew = this.abstractControl.get('isNew').value === 'true';
+      this.isNew = this.abstractControl.get('isNew') && this.abstractControl.get('isNew').value === 'true';
     }
   }
 
