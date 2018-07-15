@@ -63,7 +63,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
       },
     );
     this.setInfos(this.apartmentService.selectedApartment.apartmentTenants.map(i => {
-      return <ApartmentTenant>{...i, toDelete: false}
+      return <ApartmentTenant>{...i, toDelete: false, isNew: false}
     }));
   }
 
@@ -106,16 +106,18 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
   addInfo() {
-    this.apartmentTenants.push(this.fb.group(<ApartmentTenant>{
-      name: '',
-      family: '',
-      email: '',
-      phone: '',
+    let l = this.fb.group({
+      name: ['', Validators.required],
+      family: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
       status: 'tenant',
       id: this.apartmentService.selectedApartment.apartmentsDash.id,
       toDelete: false,
       isNew: true
-    }));
+    })
+
+    this.apartmentTenants.push(l);
   }
 
 
