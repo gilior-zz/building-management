@@ -106,7 +106,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   }
 
   addInfo() {
-    let l = this.fb.group({
+    let grp = this.fb.group({
       name: ['', Validators.required],
       family: ['', Validators.required],
       email: ['', Validators.required],
@@ -116,8 +116,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
       toDelete: false,
       isNew: true
     })
-
-    this.apartmentTenants.push(l);
+    this.apartmentTenants.push(grp);
   }
 
 

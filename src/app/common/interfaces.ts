@@ -2,12 +2,14 @@ export interface Apartment {
   apartmentsDash: ApartmentsDash,
   apartmentTenants: ApartmentTenant[];
   apartmentPayments: ApartmentPayment[];
+
 }
 
 export interface ApartmentsDash {
   id: number;
   floor: number,
   debt: number;
+
 }
 
 export interface ApartmentTenant {
@@ -37,6 +39,7 @@ export interface IAppState {
 }
 
 export interface MetaData {
+  numberOfApartmrnts: number;
   lastUpdateTime: Date;
 }
 

@@ -219,6 +219,7 @@
     }
   ],
   "metaData": {
-    "lastUpdateTime": "01-01-2018"
+    "lastUpdateTime": "01-01-2018",
+    "numberOfApartmrnts":42
   }
 }

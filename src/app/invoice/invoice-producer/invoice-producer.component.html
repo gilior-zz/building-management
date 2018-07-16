@@ -1,0 +1,18 @@
+<form [formGroup]="invoiceForm">
+  <div>
+    <label for="amount">amount</label>
+    <input id="amount" type="number" formControlName="amount">
+  </div>
+  <div>
+    <label for="checkAll">checkAll</label>
+    <input id="checkAll" type="checkbox" formControlName="checkAll">
+  </div>
+  <div>
+    <div formArrayName="apartments">
+      <div *ngFor="let apartment of apartmentsControl.controls; let i=index" [formGroupName]="i" >
+        <input formControlName="apartment" type="checkbox">#{{i+1}}
+      </div>
+    </div>
+    <div></div>
+  </div>
+</form>

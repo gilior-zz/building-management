@@ -5,14 +5,14 @@ import {NavComponent} from './common/nav/nav.component';
 import {WorksComponent} from './works/works.component';
 import {InboxComponent} from './inbox/inbox.component';
 import {AppRoutesModule} from "./app-routes";
-import {TableComponent} from './table/table.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ApartmentsModule} from "./apartments-module/apartments.module";
 import {SharedModule} from "./common/shared.module";
 import {StoreModule} from "./store/store.module";
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from './login/login.component';
 import {AuthService} from "./services/auth.service";
 import {MetaDataService} from "./services/meta-data.service";
+import {InvoiceModule} from "./invoice/invoice.module";
 
 
 @NgModule({
@@ -29,11 +29,12 @@ import {MetaDataService} from "./services/meta-data.service";
     SharedModule,
     StoreModule,
     ApartmentsModule,
+    InvoiceModule,
     HttpClientModule,
     BrowserModule,
     AppRoutesModule
   ],
-  providers: [AuthService,MetaDataService],
+  providers: [AuthService, MetaDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

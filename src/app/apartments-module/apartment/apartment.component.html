@@ -19,7 +19,7 @@
     </div>
     <button [disabled]="!userBelongsToApartment" (click)="addInfo()" type="button">הוספת איש קשר</button>
   </div>
-  <button [disabled]="apartmentForm.status=='INVALID'" type="submit">שמירה</button>
+  <button [disabled]="apartmentForm.status=='INVALID' ||!userBelongsToApartment " type="submit">שמירה</button>
   apartmentForm.status {{apartmentForm.status}}
 </form>
 

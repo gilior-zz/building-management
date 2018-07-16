@@ -12,6 +12,7 @@
       <a mat-list-item routerLinkActive="active" [routerLink]="['/apartments']">כללי</a>
       <a mat-list-item routerLinkActive="active" [routerLink]="['/works']">עבודות</a>
       <a mat-list-item routerLinkActive="active" [routerLink]="['/inbox']">דואר נכנס</a>
+      <a mat-list-item routerLinkActive="active" [routerLink]="['/invoice']">הפקת חשבוניות</a>
 
     </mat-nav-list>
   </mat-sidenav>
@@ -29,9 +30,9 @@
       <span>{{currentUser?.name}}</span>
       <span>{{currentUser?.family}}</span>
       <!--<a  [routerLink]="['/login']">יציאה</a>-->
-      <button *ngIf="isLoggedIn"  (click)="onLogOut()">יציאה</button>
+      <button *ngIf="isLoggedIn" (click)="onLogOut()">יציאה</button>
       <span>{{lastUpdateTime}}</span>
-      <span ></span>
+      <span></span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
