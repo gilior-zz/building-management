@@ -4,8 +4,9 @@ export module StoreConst {
   export const INITIAL_STATE: IAppState = {
     apartmentsDash: [],
     selectedApartment: undefined,
-    metaData: {lastUpdateTime: undefined},
-    user: undefined
+    metaData: {lastUpdateTime: undefined,numberOfApartments:0},
+    user: undefined,
+
 
   }
   export const APARTMENTS_DASH_LOADED = "APARTMENTS_DASH_LOADED";

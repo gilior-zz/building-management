@@ -39,7 +39,7 @@ export interface IAppState {
 }
 
 export interface MetaData {
-  numberOfApartmrnts: number;
+  numberOfApartments: number;
   lastUpdateTime: Date;
 }
 
