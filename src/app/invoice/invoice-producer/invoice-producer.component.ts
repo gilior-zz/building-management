@@ -8,15 +8,25 @@ import {MetaDataService} from "../../services/meta-data.service";
   styleUrls: ['./invoice-producer.component.scss']
 })
 export class InvoiceProducerComponent implements OnInit {
+
   invoiceForm: FormGroup;
-  apartments: boolean[] = Array(this.metaDataService.metaData.numberOfApartmrnts).fill(false);
+  apartments: Array<{ isChecked: boolean }> = Array(this.metaDataService.metaData.numberOfApartmrnts).fill(false);
 
   constructor(private fb: FormBuilder, private metaDataService: MetaDataService) {
     this.createForm();
   }
 
+  get apartmentsControl(): FormArray {
+    return this.invoiceForm.get('apartments') as FormArray;
+  };
 
   ngOnInit() {
+  }
+
+  setAddresses() {
+    const addressFGs = this.apartments.map(i => this.fb.group(i));
+    const arr = this.fb.array(addressFGs);
+    this.invoiceForm.setControl('apartments', arr);
   }
 
   private createForm() {
@@ -26,13 +36,4 @@ export class InvoiceProducerComponent implements OnInit {
     })
     this.setAddresses();
   }
-
-    setAddresses() {
-      const addressFGs = this.apartments.map(i => this.fb.group(i));
-      const arr = this.fb.array(addressFGs);
-      this.invoiceForm.setControl('apartments', arr);
-    }
-  get apartmentsControl(): FormArray {
-    return this.invoiceForm.get('apartments') as FormArray;
-  };
 }

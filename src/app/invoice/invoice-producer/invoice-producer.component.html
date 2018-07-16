@@ -10,7 +10,7 @@
   <div>
     <div formArrayName="apartments">
       <div *ngFor="let apartment of apartmentsControl.controls; let i=index" [formGroupName]="i" >
-        <input formControlName="apartment" type="checkbox">#{{i+1}}
+        <input formControlName="isChecked" type="checkbox">#{{i+1}}
       </div>
     </div>
     <div></div>
