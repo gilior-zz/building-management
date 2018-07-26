@@ -8,7 +8,7 @@ import {
 
 } from "@angular/material";
 import {LayoutModule} from "@angular/cdk/layout";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   exports: [ BrowserAnimationsModule,
@@ -22,7 +22,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatSortModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatPaginatorModule,ReactiveFormsModule]
+    MatPaginatorModule,ReactiveFormsModule,
+  FormsModule]
 })
 export class SharedModule {
 }

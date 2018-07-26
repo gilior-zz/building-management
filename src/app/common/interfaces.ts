@@ -48,4 +48,15 @@ export interface User {
   phone: string
 }
 
+export const Resolution: { [id: number]: string } =
+  {
+    1: 'month',
+    2: '3month',
+    3: '6month',
+    4: 'year',
+    5: 'all'
+  };
+
+
+
 

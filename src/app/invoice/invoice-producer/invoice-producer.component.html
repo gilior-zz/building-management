@@ -1,18 +1,48 @@
-<form [formGroup]="invoiceForm">
+<form (ngSubmit)="onSend()" [formGroup]="invoiceForm">
   <div>
-    <label for="amount">amount</label>
+    <label for="amount">סכום</label>
     <input id="amount" type="number" formControlName="amount">
   </div>
   <div>
-    <label for="checkAll">checkAll</label>
-    <input id="checkAll" type="checkbox" formControlName="checkAll">
+    <label for="resolution">
+      <select formControlName="resolution" id="resolution">
+        <option [ngValue]="res.key" *ngFor="let res of resolution| keyvalue">{{res.value}}</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label for="checkAll">סימון הכל</label>
+    <input (input)="onCheckAll(checkAll.checked)" #checkAll id="checkAll" type="checkbox" formControlName="checkAll">
   </div>
   <div>
     <div formArrayName="apartments">
-      <div *ngFor="let apartment of apartmentsControl.controls; let i=index" [formGroupName]="i" >
-        <input formControlName="isChecked" type="checkbox">#{{i+1}}
+      <div *ngFor="let apartment of apartmentsControl.controls; let i=index" [formGroupName]="i">
+        <label for="inp{{i+1}}"> <input id="inp{{i+1}}" formControlName="isChecked" [checked]="checkAll.checked"
+                                        type="checkbox">#{{i+1}}
+        </label>
+
       </div>
     </div>
     <div></div>
+  </div>
+  <div>
+    <label for="fromDate">
+      מ...
+      <input id="fromDate" #fromDate formControlName="fromDate" type="month">
+    </label>
+
+  </div>
+  <div>
+    <label for="toDate">
+      עד...
+      <input id="toDate" #toDate formControlName="toDate" type="month">
+    </label>
+
+
+  </div>
+
+
+  <div>
+    <button type="submit">Send</button>
   </div>
 </form>
