@@ -1,6 +1,6 @@
 import {Connection, ConnectionConfig,Request} from "tedious";
 import {Request as ExpressRequest} from "express";
-
+import {proc_param} from '../../shared/models'
 export async function connect(): Promise<Connection> {
 
 
