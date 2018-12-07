@@ -5,9 +5,9 @@ export async function connect(): Promise<Connection> {
 
 
     var config: ConnectionConfig = {
-        userName: 'lior',
-        password: 'lM8%px35',
-        server: '184.168.194.78',
+        userName: 'liorg',
+        password: 'nWas46*2',
+        server: '188.121.44.212',
 
         options: {
             rowCollectionOnDone: true,
@@ -34,7 +34,7 @@ export async function callProc<T>(req: ExpressRequest, con: Connection, proc: st
             request.on('doneInProc', (error: Error, more: boolean, rows: any[]) => {
                 for (let row of rows)
                     for (let key in row)
-                        row[key] = row[key].value
+                        row[key] =typeof row[key].value =='string'?row[key].value.trim():row[key].value
                 res(rows);
             });
             con.callProcedure(request);

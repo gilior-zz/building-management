@@ -1,13 +1,21 @@
 import {TenantsController} from "../controllers/tenants.controller";
-import {Router} from "express";
+import {Express, Router} from "express";
+import {PaymentsController} from "../controllers/payments.controller";
 
 
 export class MyRouter {
     constructor() {
     }
 
-    initRoutes() {
+    async initRoutes(app: Express) {
         let router = Router();
-        let tenantsCtrl = new TenantsController(router);
+        new TenantsController(router);
+        app.use('/api/tenants', router);
+
+        router = Router();
+        new PaymentsController(router);
+        app.use('/api/payments', router);
     }
 }
+
+export const router = new MyRouter();
