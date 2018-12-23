@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Apartment, ApartmentsDash, ApartmentTenant, IAppState} from "../common/interfaces";
+import {IAppState} from "../common/interfaces";
 import {NgRedux} from "@angular-redux/store";
 import {StoreConst} from "../common/const";
 import {Subject} from "rxjs/Rx";
-import APARTMENT_SELECTED = StoreConst.APARTMENT_SELECTED;
-import MAININFO_LOADED = StoreConst.APARTMENTS_DASH_LOADED;
+import {Apartment, ApartmentDebt, ApartmentsDash, ApartmentTenant} from '../../../../shared/models'
+import {Observable} from "rxjs";
+import * as _ from 'lodash'
 import API_URL = StoreConst.API_URL;
 
 @Injectable({
@@ -14,7 +15,7 @@ import API_URL = StoreConst.API_URL;
 export class ApartmentService {
 
 
-  apartmentsDashUrl = `${API_URL}apartmentsDash`;
+  apartmentsPaymentsUrl = `${API_URL}payments`;
   apartmentUrl = `${API_URL}apartments/`;
   apartmentsDash: ApartmentsDash[];
   public selectedApartment: Apartment;
@@ -27,33 +28,21 @@ export class ApartmentService {
     this.ngRedux.select('selectedApartment').subscribe((apartment: Apartment) => {
         this.selectedApartment = apartment;
         this.selectedApartmentdSource.next();
-
-
       }
     )
   }
 
-  getApartments(): void {
-    this.http.get<ApartmentsDash[]>(this.apartmentsDashUrl)
-      .subscribe((mainInfos) => {
-        this.ngRedux.dispatch({
-          type: MAININFO_LOADED,
-          meta: null,
-          payload: mainInfos,
-        })
-      })
+  get apartmentDebt(): number {
+    return _.sumBy(this.selectedApartment.apartmentPayments, i => i.debt);
   }
 
-  loadSelectedApartmentDetails(id: number) {
+  getApartmentsPayments(): Observable<[ApartmentDebt]> {
+    return this.http.get<[ApartmentDebt]>(this.apartmentsPaymentsUrl)
+  }
+
+  loadSelectedApartmentDetails(id: number): Observable<[[ApartmentDebt], [ApartmentTenant], [Apartment]]> {
     let url = `${this.apartmentUrl}${id}`;
-    this.http.get<Apartment>(url)
-      .subscribe(apartment => {
-        this.ngRedux.dispatch({
-          type: APARTMENT_SELECTED,
-          meta: null,
-          payload: apartment,
-        })
-      })
+    return this.http.get<[[ApartmentDebt], [ApartmentTenant], [Apartment]]>(url)
 
   }
 

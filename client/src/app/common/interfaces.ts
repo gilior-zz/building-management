@@ -1,41 +1,16 @@
-export interface Apartment {
-  apartmentsDash: ApartmentsDash,
-  apartmentTenants: ApartmentTenant[];
-  apartmentPayments: ApartmentPayment[];
+import {ApartmentDebt, ApartmentsDash,Apartment,User} from "../../../../shared/models";
 
-}
 
-export interface ApartmentsDash {
-  id: number;
-  floor: number,
-  debt: number;
 
-}
 
-export interface ApartmentTenant {
-  toDelete: boolean;
-  id: number,
-  isNew: boolean
-  apartmentID: number,
-  name: string;
-  family: string;
-  phone: string;
-  email: string;
-  status: 'tenant' | 'owner';
-}
 
-export interface ApartmentPayment {
-  id: number;
-  year: number;
-  month: number;
-  payment: number;
-}
+
 
 export interface IAppState {
-  apartmentsDash: ApartmentsDash[];
+  apartmentsDash: ApartmentDebt[];
   selectedApartment: Apartment;
   metaData: MetaData,
-  user: ApartmentTenant
+  user: User
 }
 
 export interface MetaData {
@@ -43,10 +18,10 @@ export interface MetaData {
   lastUpdateTime: Date;
 }
 
-export interface User {
-  email: string;
-  phone: string
-}
+// export interface User {
+//   email: string;
+//   phone: string
+// }
 
 export const Resolution: { [id: number]: string } =
   {

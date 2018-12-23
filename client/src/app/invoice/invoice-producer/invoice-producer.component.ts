@@ -10,16 +10,16 @@ import {Resolution} from "../../common/interfaces";
 })
 export class InvoiceProducerComponent implements OnInit, AfterViewInit {
   invoiceForm: FormGroup;
-  apartments: Array<{ isChecked: boolean }> = Array(this.metaDataService.metaData.numberOfApartments).fill({isChecked: false});
+  apartments: Array<{ isChecked: boolean }> = Array(this.metaDataService.metaData.numberOfApartments);
   @ViewChild('toDate') toDateInput: ElementRef;
   @ViewChild('fromDate') fromDateInput: ElementRef;
 
   constructor(private fb: FormBuilder, private metaDataService: MetaDataService) {
     this.createForm();
-
+    this.apartments.map(i => i.isChecked = false);
   }
 
-  get resolution(): { [id: number]: string }{
+  get resolution(): { [id: number]: string } {
     return Resolution;
   }
 
@@ -82,7 +82,7 @@ export class InvoiceProducerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    var month = ("0" + (new Date().getMonth()+1)).slice(-2);
+    var month = ("0" + (new Date().getMonth() + 1)).slice(-2);
     this.toDateInput.nativeElement.value = `${new Date().getFullYear()}-${month}`
     this.fromDateInput.nativeElement.value = `${new Date().getFullYear()}-${month}`
   }
@@ -93,7 +93,7 @@ export class InvoiceProducerComponent implements OnInit, AfterViewInit {
       checkAll: [false],
       fromDate: [`${new Date().getFullYear()}-${new Date().getMonth()}`],
       toDate: [`${new Date().getFullYear()}-${new Date().getMonth()}`],
-      resolution:[1]
+      resolution: [1]
 
     })
     this.setAddresses();

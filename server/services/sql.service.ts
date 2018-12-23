@@ -24,7 +24,7 @@ export async function connect(): Promise<Connection> {
 
 }
 
-export async function callProc<T>(req: ExpressRequest, con: Connection, proc: string, ...params: proc_param[]): Promise<T[]> {
+export async function callProc<T>(con: Connection, proc: string, ...params: proc_param[]): Promise<T[]> {
 
     return new Promise<T[]>((res, rej) => {
             var request = new Request(proc, function (err, rowCount, rows) {

@@ -1,11 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Apartment, ApartmentTenant} from "../../common/interfaces";
+import {IAppState} from "../../common/interfaces";
+import {Apartment, ApartmentDebt, ApartmentTenant} from '../../../../../shared/models'
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ApartmentService} from "../../services/payments.service";
 import {Subscription} from "rxjs/Rx";
 import {AuthService} from "../../services/auth.service";
 import {uniqueEmailPhoneValidator} from "./uniqe-email-phone.directive";
+import {StoreConst} from "../../common/const";
+import {NgRedux} from "@angular-redux/store";
+import APARTMENT_SELECTED = StoreConst.APARTMENT_SELECTED;
 
 @Component({
   selector: 'apartment',
@@ -21,7 +25,8 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               public  apartmentService: ApartmentService,
-              private  authService: AuthService) {
+              private  authService: AuthService,
+              private ngRedux: NgRedux<IAppState>) {
     this.createForm();
     this.subscription = this.apartmentService.selectedApartmentdSource$.subscribe(() => {
       this.rebuildForm();
@@ -51,15 +56,27 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = +params.get('id');
-      this.apartmentService.loadSelectedApartmentDetails(id);
+      this.apartmentService.loadSelectedApartmentDetails(id)
+        .subscribe((apartment: [[ApartmentDebt], [ApartmentTenant], [Apartment]]) => {
+          this.ngRedux.dispatch({
+            type: APARTMENT_SELECTED,
+            meta: null,
+            payload: <Apartment>{
+              floor: apartment[2][0].floor,
+              id: apartment[2][0].id,
+              apartmentTenants: apartment[1],
+              apartmentPayments: apartment[0]
+            },
+          })
+        })
     })
   }
 
   rebuildForm() {
     this.apartmentForm.reset({
-        id: this.apartmentService.selectedApartment.apartmentsDash.id,
-        floor: this.apartmentService.selectedApartment.apartmentsDash.floor,
-        debt: this.apartmentService.selectedApartment.apartmentsDash.debt
+        id: this.apartmentService.selectedApartment.id,
+        floor: this.apartmentService.selectedApartment.floor,
+        debt: this.apartmentService.apartmentDebt
       },
     );
     this.setInfos(this.apartmentService.selectedApartment.apartmentTenants.map(i => {
@@ -79,7 +96,8 @@ export class ApartmentComponent implements OnInit, OnDestroy {
         return {...info}
       }
     );
-    return <Apartment>{apartmentsDash: {id: id}, apartmentTenants: apartmentInfo};
+    return <Apartment>{apartmentTenants:apartmentInfo,id:id,floor:floor};
+    // return <Apartment>{apartmentsDash: {apartment_id: id}, apartmentTenants: apartmentInfo};
   }
 
   createForm() {
@@ -112,7 +130,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
       email: ['', Validators.required],
       phone: ['', Validators.required],
       status: 'tenant',
-      id: this.apartmentService.selectedApartment.apartmentsDash.id,
+      id: this.apartmentService.selectedApartment.id,
       toDelete: false,
       isNew: true
     })

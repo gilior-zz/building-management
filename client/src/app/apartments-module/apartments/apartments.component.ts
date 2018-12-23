@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Apartment, ApartmentsDash} from "../../common/interfaces";
+import {IAppState} from "../../common/interfaces";
 import {ApartmentService} from "../../services/payments.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ApartmentDebt,ApartmentsDash} from '../../../../../shared/models'
+import {NgRedux} from "@angular-redux/store";
+import {StoreConst} from "../../common/const";
+import MAININFO_LOADED = StoreConst.APARTMENTS_DASH_LOADED;
 
 @Component({
   selector: 'payments',
@@ -9,7 +12,8 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
   styleUrls: ['./apartments.component.scss']
 })
 export class ApartmentsComponent implements OnInit {
-  constructor(public  apartmentService: ApartmentService) {
+  constructor(public  apartmentService: ApartmentService,
+              private  ngRedux: NgRedux<IAppState>) {
   }
 
   // mainInfo: Apartment[] = [];
@@ -20,10 +24,14 @@ export class ApartmentsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.apartmentService.getApartments();
-    // .subscribe((mainInfo) => {
-    //   this.mainInfo = mainInfo;
-    // })
+    this.apartmentService.getApartmentsPayments()
+      .subscribe((apartmentDebt: [ApartmentDebt]) => {
+        this.ngRedux.dispatch({
+          type: MAININFO_LOADED,
+          meta: null,
+          payload: apartmentDebt,
+        })
+      })
   }
 
 }

@@ -4,7 +4,8 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {AuthService} from "../../services/auth.service";
 import {MetaDataService} from "../../services/meta-data.service";
-import {ApartmentTenant, User} from "../interfaces";
+import {ApartmentTenant} from '../../../../../shared/models';
+
 
 @Component({
   selector: 'nav',
@@ -24,9 +25,9 @@ export class NavComponent {
               private metaDataService: MetaDataService) {
   }
 
-  get lastUpdateTime(): Date {
-    return this.metaDataService.metaData.lastUpdateTime;
-  }
+  // get lastUpdateTime(): Date {
+  //   return this.metaDataService.metaData.lastUpdateTime;
+  // }
 
   get currentUser():ApartmentTenant{
     return this.authService.user

@@ -2,10 +2,10 @@ import {HttpClient} from '@angular/common/http';
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Observable} from 'rxjs';
-import {ApartmentsDash, IAppState} from "../common/interfaces";
+import {IAppState} from "../common/interfaces";
 import {ApartmentService} from "../services/payments.service";
 import {NgRedux} from "@angular-redux/store";
-
+import {ApartmentsDash} from '../../../../shared/models'
 /**
  * @title Table retrieving data through HTTP
  */
@@ -15,7 +15,7 @@ import {NgRedux} from "@angular-redux/store";
   templateUrl: './table.component.html',
 })
 export class TableComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['id', 'floor', 'debt', 'details'];
+  displayedColumns = ['apartment_id', 'floor', 'debt', 'details'];
   exampleDatabase: ExampleHttpDao | null;
   resultsLength = 0;
   isLoadingResults = true;

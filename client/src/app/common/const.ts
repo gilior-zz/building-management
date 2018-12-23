@@ -14,5 +14,5 @@ export module StoreConst {
   export const META_DATA_LOADED = "META_DATA_LOADED";
   export const USER_STATUS_CHANGED = "USER_STATUS_CHANGED";
 
-  export const API_URL = ' http://localhost:3000/';
+  export const API_URL = '/api/';
 }
