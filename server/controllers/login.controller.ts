@@ -19,6 +19,10 @@ export class LoginController {
                 value: req.body.phone,
                 name: 'phone',
                 type: TYPES.NVarChar
+            }, {
+                value: req.body.pwd,
+                name: 'pwd',
+                type: TYPES.NVarChar
             }
         ]
         utility.loadContentAndSendToClient(req, 'ApartmentsTenantsSelectByEmailPhone', res,undefined, ...params)

@@ -1,0 +1,39 @@
+
+<mat-table [dataSource]="payments">
+  <!-- User name Definition -->
+  <ng-container cdkColumnDef="username">
+    <mat-header-cell *cdkHeaderCellDef> User name </mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.username}} </mat-cell>
+  </ng-container>
+
+  <!-- Age Definition -->
+  <ng-container cdkColumnDef="year">
+    <mat-header-cell *cdkHeaderCellDef> שנה </mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.year}} </mat-cell>
+  </ng-container>
+
+  <!-- Title Definition -->
+  <ng-container cdkColumnDef="month">
+    <mat-header-cell *cdkHeaderCellDef> חודש </mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.month}} </mat-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="amount">
+    <mat-header-cell *cdkHeaderCellDef> שולם </mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.amount}} </mat-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="payment">
+    <mat-header-cell *cdkHeaderCellDef> ועד </mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.payment}} </mat-cell>
+  </ng-container>
+
+  <ng-container cdkColumnDef="debt">
+    <mat-header-cell *cdkHeaderCellDef> חוב </mat-header-cell>
+    <mat-cell *cdkCellDef="let row"> {{row.debt}} </mat-cell>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <mat-header-row *cdkHeaderRowDef="cols"></mat-header-row>
+  <mat-row *cdkRowDef="let row; columns: cols"></mat-row>
+</mat-table>

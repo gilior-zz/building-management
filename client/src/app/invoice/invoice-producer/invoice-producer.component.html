@@ -6,7 +6,7 @@
   <div>
     <label for="resolution">
       <select formControlName="resolution" id="resolution">
-        <option [ngValue]="res.key" *ngFor="let res of resolution| keyvalue">{{res.value}}</option>
+        <option [value]="res.key" *ngFor="let res of resolution| keyvalue">{{res.value}}</option>
       </select>
     </label>
   </div>

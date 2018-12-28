@@ -1,30 +1,92 @@
-<div  [formGroup]="abstractControl">
-  <h4>איש קשר #{{index + 1}}
-    <button [disabled]="disableInput" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>
-  </h4>
-  <div>
-    <label>שם פרטי:
-      <input [readonly]="disableInput" type="text" formControlName="name">
-    </label>
-  </div>
-  <div>
-    <label>שם משפחה:
-      <input [readonly]="disableInput" type="text" formControlName="family">
-    </label>
-  </div>
-  <div>
-    <label>טלפון:
-      <input [readonly]="disableInput" type="text" formControlName="phone">
-    </label>
+<mat-card>
+  <div class="card-wrp">
+    <mat-card-header>
+      <mat-card-title>
+        <!--איש קשר #{{index + 1}}-->
+        {{nameCtrl.value}}
+        {{familyCtrl.value}}
+      </mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="abstractControl">
+      <h4>
+        <!--<button [disabled]="!userIsTenant" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>-->
+        <button class="remove-btn" [disabled]="!userIsTenant" (click)="toggleDeleted()" mat-raised-button color="warn">{{actionBtnTxt}}
+        </button>
+      </h4>
+
+        <!--<label>שם פרטי:-->
+        <!--<input [readonly]="disableInput" type="text" formControlName="name">-->
+        <!--</label>-->
+
+        <mat-form-field class="">
+          <input matInput placeholder="שם" formControlName="name">
+          <mat-error *ngIf="nameCtrl.hasError('required')">
+            יש להזין שם
+          </mat-error>
+          <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
+        </mat-form-field>
+
+
+
+
+        <!--<label>שם משפחה:-->
+        <!--<input [readonly]="disableInput" type="text" formControlName="family">-->
+        <!--</label>-->
+
+        <mat-form-field class="">
+          <input matInput placeholder="משפחה" formControlName="family">
+          <mat-error *ngIf="familyCtrl.hasError('required')">
+            יש להזין משפחה
+          </mat-error>
+          <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
+        </mat-form-field>
+
+
+        <!--<label>טלפון:-->
+        <!--<input [readonly]="disableInput" type="text" formControlName="phone">-->
+        <!--</label>-->
+
+        <mat-form-field class="">
+          <input matInput placeholder="טלפון" formControlName="phone">
+          <mat-error *ngIf="phoneCtrl.hasError('required')">
+            יש להזין טלפון
+          </mat-error>
+          <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
+        </mat-form-field>
+
+
+
+
+        <!--<label>אי מייל:-->
+        <!--<input [readonly]="disableInput" type="email" formControlName="email">-->
+        <!--</label>-->
+
+
+        <mat-form-field class="">
+          <input matInput placeholder="מייל" formControlName="email">
+          <mat-error *ngIf="emailCtrl.hasError('email') && !emailCtrl.hasError('required')">
+            מייל אינו חוקי
+          </mat-error>
+          <mat-error *ngIf="emailCtrl.hasError('required')">
+            יש להזין מייל
+          </mat-error>
+          <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
+        </mat-form-field>
+
+
+      <div>בעלות:</div>
+      <!--<label><input type="radio" formControlName="status" value="tenant">דייר</label>-->
+      <!--<label><input type="radio" formControlName="status" value="owner">בעל דירה</label>-->
+
+      <mat-radio-group formControlName="status">
+        <mat-radio-button value="tenant">דייר</mat-radio-button>
+        <mat-radio-button value="owner">בעלים</mat-radio-button>
+      </mat-radio-group>
+
+
+    </form>
   </div>
 
-  <div>
-    <label>אי מייל:
-      <input [readonly]="disableInput" type="email" formControlName="email">
-    </label>
-  </div>
-  <div>בעלות:</div>
-  <label><input type="radio" formControlName="status" value="tenant">דייר</label>
-  <label><input type="radio" formControlName="status" value="owner">בעל דירה</label>
+</mat-card>
 
-</div>
+

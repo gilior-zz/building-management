@@ -4,6 +4,7 @@ import {IAppState, MetaData} from "../common/interfaces";
 import {HttpClient} from "@angular/common/http";
 import {StoreConst} from "../common/const";
 import API_URL = StoreConst.API_URL;
+import META_DATA_LOADED = StoreConst.META_DATA_LOADED;
 
 @Injectable()
 export class MetaDataService {
@@ -12,15 +13,14 @@ export class MetaDataService {
   public metaData: MetaData;
 
   constructor(private ngRedux: NgRedux<IAppState>, private httpClient: HttpClient) {
-    //   this.httpClient.get(this.url)
-    //     .subscribe((metaData) => {
-    //       this.ngRedux.dispatch({
-    //         type: META_DATA_LOADED,
-    //         meta: null,
-    //         payload: metaData,
-    //       })
-    //     })
-    //   this.ngRedux.select('metaData')
-    //     .subscribe((metaData: MetaData) => this.metaData = metaData)
+      this.httpClient.get(this.url)
+        .subscribe((metaData) => {
+          this.ngRedux.dispatch({
+            type: META_DATA_LOADED,
+            meta: null,
+            payload: metaData,
+          })
+        })
+     
   }
 }

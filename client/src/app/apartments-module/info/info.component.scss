@@ -1,0 +1,19 @@
+
+mat-card {
+  //border: solid;
+  mat-form-field {
+    input {
+      width: 80%;
+    }
+    mat-icon {
+      height: 15px;
+    }
+  }
+  .card-wrp{
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    border-radius: 3px;
+  }
+
+}
+

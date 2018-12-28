@@ -10,11 +10,11 @@ export class TenantsController {
     }
 
     async loadTenants(req: Request, res: Response) {
-        utility.loadContentAndSendToClient(req, 'ApartmentsApartmentsTenantsSelectAll', res);
+        utility.loadContentAndSendToClient(req, 'ApartmentsApartmentsTenantsSelectAll', res,undefined);
     }
 
     private loadTenantsPerId(req: Request, res: Response) {
         let proc_param: proc_param = {value: req.params.id, type: TYPES.SmallInt, name: 'id'}
-        utility.loadContentAndSendToClient(req, 'ApartmentsApartmentsTenantsSelectByID', res, proc_param);
+        utility.loadContentAndSendToClient(req, 'ApartmentsApartmentsTenantsSelectByID', res,undefined, proc_param);
     }
 }

@@ -13,6 +13,7 @@ import {LoginComponent} from './login/login.component';
 import {AuthService} from "./services/auth.service";
 import {MetaDataService} from "./services/meta-data.service";
 import {InvoiceModule} from "./invoice/invoice.module";
+import {IconService} from "./services/icon.service";
 
 
 @NgModule({
@@ -38,4 +39,6 @@ import {InvoiceModule} from "./invoice/invoice.module";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(private  a: IconService) {
+  }
 }

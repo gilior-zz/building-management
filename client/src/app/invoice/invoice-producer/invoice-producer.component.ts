@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MetaDataService} from "../../services/meta-data.service";
-import {Resolution} from "../../common/interfaces";
+import {IAppState, MetaData, Resolution} from "../../common/interfaces";
+import {NgRedux} from "@angular-redux/store";
 
 @Component({
   selector: 'app-invoice-producer',
@@ -10,13 +11,16 @@ import {Resolution} from "../../common/interfaces";
 })
 export class InvoiceProducerComponent implements OnInit, AfterViewInit {
   invoiceForm: FormGroup;
-  apartments: Array<{ isChecked: boolean }> = Array(this.metaDataService.metaData.numberOfApartments);
+  apartments: Array<{ isChecked: boolean }>;
   @ViewChild('toDate') toDateInput: ElementRef;
   @ViewChild('fromDate') fromDateInput: ElementRef;
 
-  constructor(private fb: FormBuilder, private metaDataService: MetaDataService) {
+  constructor(private fb: FormBuilder,
+              private metaDataService: MetaDataService,
+              private ngRedux: NgRedux<IAppState>) {
     this.createForm();
-    this.apartments.map(i => i.isChecked = false);
+
+    // this.apartments.map(i => i.isChecked = false);
   }
 
   get resolution(): { [id: number]: string } {
@@ -53,7 +57,12 @@ export class InvoiceProducerComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
-    console.log(this.metaDataService.metaData.numberOfApartments)
+    // console.log(this.metaDataService.metaData.numberOfApartments)
+    this.ngRedux.select('metaData')
+      .subscribe((i: MetaData) => {
+        this.apartments = new Array<{ isChecked: boolean }>(i.numberOfApartments).fill({isChecked: false});
+        this.setAddresses();
+      })
   }
 
   setAddresses() {
@@ -89,15 +98,16 @@ export class InvoiceProducerComponent implements OnInit, AfterViewInit {
 
   private createForm() {
     this.invoiceForm = this.fb.group({
-      amount: [0, Validators.required],
+      amount: ['', Validators.required],
       checkAll: [false],
       fromDate: [`${new Date().getFullYear()}-${new Date().getMonth()}`],
       toDate: [`${new Date().getFullYear()}-${new Date().getMonth()}`],
-      resolution: [1]
-
+      resolution: [1],
+      apartments: this.fb.array([
+        this.fb.control('')
+      ])
     })
-    this.setAddresses();
-
+    // this.setAddresses();
   }
 
 

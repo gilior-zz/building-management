@@ -7,6 +7,6 @@ export class MetadataController {
     }
 
     private loadMetaData(req: Request, res: Response) {
-        utility.loadContentAndSendToClient(req, '', res,undefined);
+        utility.loadContentAndSendToClient(req, 'MetaDataSelect', res, undefined);
     }
 }

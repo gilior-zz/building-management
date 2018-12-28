@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
   onLoginRequest() {
     let email = this.loginForm.value.email;
     let phone = this.loginForm.value.phone;
-    this.authService.login(email, phone)
+    let pwd = this.loginForm.value.pwd;
+    this.authService.login(email, phone,pwd)
       .subscribe((res: [ApartmentTenant & Apartment]) => {
         let url = this.authService.redirectUrl;
         let apartments = '/apartments';
@@ -54,7 +55,8 @@ export class LoginComponent implements OnInit {
   private buildForm() {
     this.loginForm = this.fb.group({
       email: ['liorgish@gmail.com'],
-      phone: ['0546665074']
+      phone: ['0546665074'],
+      pwd:['123456']
     })
   }
 }

@@ -15,7 +15,7 @@ export interface ApartmentDebt {
     floor: number
 }
 
-export type User = Apartment & ApartmentTenant;
+export type User = ApartmentTenant;
 
 
 export interface ApartmentsDash {

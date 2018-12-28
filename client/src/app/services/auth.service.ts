@@ -5,9 +5,10 @@ import {StoreConst} from "../common/const";
 import {NgRedux} from "@angular-redux/store";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Apartment, ApartmentTenant, User} from '../../../../shared/models'
 import API_URL = StoreConst.API_URL;
 import USER_STATUS_CHANGED = StoreConst.USER_STATUS_CHANGED;
-import {User, ApartmentTenant, Apartment} from '../../../../shared/models'
+
 @Injectable()
 export class AuthService {
 
@@ -47,9 +48,9 @@ export class AuthService {
     //   )
   }
 
-  login(email: string, phone: string): Observable<[ApartmentTenant & Apartment]> {
+  login(email: string, phone: string, pwd: string): Observable<[ApartmentTenant & Apartment]> {
     // return this.httpClient.get(this.loginUrl)
-    return this.httpClient.post<[ApartmentTenant & Apartment]>(this.loginUrl, {email, phone})
+    return this.httpClient.post<[ApartmentTenant & Apartment]>(this.loginUrl, {email, phone,pwd})
     // l.subscribe((apartments: Apartment[]) => {
     //   let user = apartments[0].apartmentTenants[0]
     //   localStorage.setItem('user', JSON.stringify(<ApartmentTenant>user))

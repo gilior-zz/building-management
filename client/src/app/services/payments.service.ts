@@ -32,7 +32,10 @@ export class ApartmentService {
     )
   }
 
+
+
   get apartmentDebt(): number {
+
     return _.sumBy(this.selectedApartment.apartmentPayments, i => i.debt);
   }
 

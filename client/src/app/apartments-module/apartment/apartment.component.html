@@ -1,26 +1,8 @@
-<!--<h3><i>Using FormArray to add groups</i></h3>-->
-<h2>דירה {{apartmentService?.selectedApartment?.apartmentsDash?.id}}</h2>
-<h2>קומה {{apartmentService?.selectedApartment?.apartmentsDash?.floor}}</h2>
-<form *ngIf="apartmentService?.selectedApartment" (ngSubmit)="onSubmit()" [formGroup]="apartmentForm">
-  <!--<p>Form Changed: {{ apartmentForm.dirty }}</p>-->
-  <div>
-    <label>יתרת חוב
-      <input readonly type="number" formControlName="debt"></label>
-  </div>
-  <div>
-  </div>
-  <br><br>
-  <div formArrayName="apartmentTenants">
-    <div *ngFor="let info of apartmentTenants.controls; let i=index" [formGroupName]="i">
-      <!-- The repeated info template -->
-      <info [abstractControl]="info" [index]="i"></info>
-      <br>
-      <!-- End of the repeated address template -->
-    </div>
-    <button [disabled]="!userBelongsToApartment" (click)="addInfo()" type="button">הוספת איש קשר</button>
-  </div>
-  <button [disabled]="apartmentForm.status=='INVALID' ||!userBelongsToApartment " type="submit">שמירה</button>
-  apartmentForm.status {{apartmentForm.status}}
-</form>
+
+   <detail [apartment]="apartment"></detail>
+  <app-payments [payments]="payments"></app-payments>
+
+
+
 
 

@@ -25,7 +25,7 @@ export function rootReducer(lastState: IAppState, action: FSA<Payload, MetaData>
       return state;
     case META_DATA_LOADED:
       state = <IAppState>{...lastState};
-      state.metaData = action.payload;
+      state.metaData = action.payload[0];
       return state;
     case USER_STATUS_CHANGED:
       state = <IAppState>{...lastState};
