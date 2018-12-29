@@ -3,9 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {IAppState} from "../common/interfaces";
 import {NgRedux} from "@angular-redux/store";
 import {StoreConst} from "../common/const";
-import {Subject} from "rxjs/Rx";
+import {Subject, Observable} from "rxjs";
 import {Apartment, ApartmentDebt, ApartmentsDash, ApartmentTenant} from '../../../../shared/models'
-import {Observable} from "rxjs";
 import * as _ from 'lodash'
 import API_URL = StoreConst.API_URL;
 

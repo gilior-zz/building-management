@@ -4,7 +4,7 @@ import {IAppState} from "../../../common/interfaces";
 import {Apartment, ApartmentDebt, ApartmentTenant} from '../../../../../../shared/models'
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ApartmentService} from "../../../services/payments.service";
-import {Subscription} from "rxjs/Rx";
+import {Subscription} from "rxjs";
 import {AuthService} from "../../../services/auth.service";
 import {uniqueEmailPhoneValidator} from "../uniqe-email-phone.directive";
 import {StoreConst} from "../../../common/const";
