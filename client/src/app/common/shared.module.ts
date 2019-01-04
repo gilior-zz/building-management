@@ -19,7 +19,7 @@ import {CdkTableModule} from "@angular/cdk/table";
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   exports: [ BrowserAnimationsModule,
     LayoutModule,
@@ -33,7 +33,7 @@ import {MatCardModule} from '@angular/material/card';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatPaginatorModule,ReactiveFormsModule,
-  FormsModule,CdkTableModule,MatInputModule,MatRadioModule,MatCardModule]
+  FormsModule,CdkTableModule,MatInputModule,MatRadioModule,MatCardModule,MatChipsModule]
 })
 export class SharedModule {
 }
