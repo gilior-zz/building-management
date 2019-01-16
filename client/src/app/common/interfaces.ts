@@ -1,10 +1,6 @@
-import {ApartmentDebt, ApartmentsDash,Apartment,User} from "../../../../shared/models";
-
-
-
-
-
-
+import {Apartment, ApartmentDebt, User} from "../../../../shared/models";
+import {Action} from "redux";
+import {AbstractControl, AsyncValidatorFn, ValidatorFn} from "@angular/forms";
 
 export interface IAppState {
   apartmentsDash: ApartmentDebt[];
@@ -31,6 +27,34 @@ export const Resolution: { [id: number]: string } =
     4: 'year',
     5: 'all'
   };
+
+export interface IMetadata {
+  url: string,
+  body: any,
+  continueWith: string
+}
+
+export interface IActionPayload extends Action {
+
+  meta: IMetadata
+
+}
+
+export abstract class MyAbstractControl extends AbstractControl {
+  constructor(validator: ValidatorFn | null, asyncValidator: AsyncValidatorFn | null) {
+    super(validator, asyncValidator);
+  }
+
+  get name(): string {
+    let name = '';
+    Object.keys(this.parent.controls).forEach(key => {
+      if (this.parent[key] === this)
+        name = key;
+    })
+    return name;
+  }
+}
+
 
 
 

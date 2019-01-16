@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+  <mat-form-field class="">
+    <input (keyup)="onKeyUp($event.target)" maxlength="10" matInput placeholder="שם" [formControl]="abstractControl">
+    <mat-error *ngIf="abstractControl.hasError('required')">
+      חובה להזין ערך
+    </mat-error>
+    <mat-icon *ngIf="userIsTenant && isEditing" svgIcon="edit"></mat-icon>
+  </mat-form-field>
+</form>
+

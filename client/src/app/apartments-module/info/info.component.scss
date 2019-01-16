@@ -2,6 +2,7 @@
 mat-card {
   //border: solid;
   mat-form-field {
+    display: block;
     input {
       width: 80%;
     }
@@ -9,10 +10,22 @@ mat-card {
       height: 15px;
     }
   }
-  .card-wrp{
-    background-color: rgba(0, 0, 0, 0.1);
+  .card-wrp {
     padding: 5px;
     border-radius: 3px;
+    mat-card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    mat-radio-button {
+      ::ng-deep{
+        .mat-radio-label-content {
+          padding: 0 0 0 8px;
+        }
+      }
+    }
   }
 
 }

@@ -1,77 +1,87 @@
 <mat-card>
-  <div class="card-wrp">
+  <div [@color]="isOpen ? true : false" class="card-wrp">
     <mat-card-header>
       <mat-card-title>
         <!--איש קשר #{{index + 1}}-->
+
         {{nameCtrl.value}}
         {{familyCtrl.value}}
+
+
       </mat-card-title>
+      <mat-chip-list>
+        <mat-chip (click)="toggleDeleted()" *ngIf="userIsTenant" [@flyInOut]="isOpen ? true : false" color="warn"
+                  selected>{{actionBtnTxt}}
+        </mat-chip>
+
+      </mat-chip-list>
+
+      <!--<button  class="remove-btn" [disabled]="!userIsTenant"-->
+      <!--mat-raised-button color="warn">-->
+      <!--</button>-->
     </mat-card-header>
     <form [formGroup]="abstractControl">
       <h4>
         <!--<button [disabled]="!userIsTenant" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>-->
-        <button class="remove-btn" [disabled]="!userIsTenant" (click)="toggleDeleted()" mat-raised-button color="warn">{{actionBtnTxt}}
-        </button>
+
       </h4>
 
-        <!--<label>שם פרטי:-->
-        <!--<input [readonly]="disableInput" type="text" formControlName="name">-->
-        <!--</label>-->
+      <!--<label>שם פרטי:-->
+      <!--<input [readonly]="disableInput" type="text" formControlName="name">-->
+      <!--</label>-->
 
-        <mat-form-field class="">
-          <input matInput placeholder="שם" formControlName="name">
-          <mat-error *ngIf="nameCtrl.hasError('required')">
-            יש להזין שם
-          </mat-error>
-          <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
-        </mat-form-field>
-
-
-
-
-        <!--<label>שם משפחה:-->
-        <!--<input [readonly]="disableInput" type="text" formControlName="family">-->
-        <!--</label>-->
-
-        <mat-form-field class="">
-          <input matInput placeholder="משפחה" formControlName="family">
-          <mat-error *ngIf="familyCtrl.hasError('required')">
-            יש להזין משפחה
-          </mat-error>
-          <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
-        </mat-form-field>
+      <!--<mat-form-field class="">-->
+      <!--<input (keyup)="onKeyUp($event.target)" maxlength="10" matInput placeholder="שם" formControlName="name">-->
+      <!--<mat-error *ngIf="nameCtrl.hasError('required')">-->
+      <!--יש להזין שם-->
+      <!--</mat-error>-->
+      <!--<mat-icon *ngIf="userIsTenant && isEditing" svgIcon="edit"></mat-icon>-->
+      <!--</mat-form-field>-->
+      <app-info-form-field ctrlName="name" [userIsTenant]="userIsTenant" [abstractControl]="nameCtrl"
+                           [formGroup]="abstractControl"></app-info-form-field>
 
 
-        <!--<label>טלפון:-->
-        <!--<input [readonly]="disableInput" type="text" formControlName="phone">-->
-        <!--</label>-->
+      <!--<label>שם משפחה:-->
+      <!--<input [readonly]="disableInput" type="text" formControlName="family">-->
+      <!--</label>-->
 
-        <mat-form-field class="">
-          <input matInput placeholder="טלפון" formControlName="phone">
-          <mat-error *ngIf="phoneCtrl.hasError('required')">
-            יש להזין טלפון
-          </mat-error>
-          <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
-        </mat-form-field>
-
-
+      <mat-form-field class="">
+        <input maxlength="10" matInput placeholder="משפחה" formControlName="family">
+        <mat-error *ngIf="familyCtrl.hasError('required')">
+          יש להזין משפחה
+        </mat-error>
+        <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
+      </mat-form-field>
 
 
-        <!--<label>אי מייל:-->
-        <!--<input [readonly]="disableInput" type="email" formControlName="email">-->
-        <!--</label>-->
+      <!--<label>טלפון:-->
+      <!--<input [readonly]="disableInput" type="text" formControlName="phone">-->
+      <!--</label>-->
+
+      <mat-form-field class="">
+        <input maxlength="10" matInput placeholder="טלפון" formControlName="phone">
+        <mat-error *ngIf="phoneCtrl.hasError('required')">
+          יש להזין טלפון
+        </mat-error>
+        <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
+      </mat-form-field>
 
 
-        <mat-form-field class="">
-          <input matInput placeholder="מייל" formControlName="email">
-          <mat-error *ngIf="emailCtrl.hasError('email') && !emailCtrl.hasError('required')">
-            מייל אינו חוקי
-          </mat-error>
-          <mat-error *ngIf="emailCtrl.hasError('required')">
-            יש להזין מייל
-          </mat-error>
-          <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
-        </mat-form-field>
+      <!--<label>אי מייל:-->
+      <!--<input [readonly]="disableInput" type="email" formControlName="email">-->
+      <!--</label>-->
+
+
+      <mat-form-field class="">
+        <input maxlength="30" matInput placeholder="מייל" formControlName="email">
+        <mat-error *ngIf="emailCtrl.hasError('email') && !emailCtrl.hasError('required')">
+          מייל אינו חוקי
+        </mat-error>
+        <mat-error *ngIf="emailCtrl.hasError('required')">
+          יש להזין מייל
+        </mat-error>
+        <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
+      </mat-form-field>
 
 
       <div>בעלות:</div>
@@ -86,7 +96,9 @@
 
     </form>
   </div>
-
+  <mat-card-footer>
+    <!--{{abstractControl|json}}-->
+  </mat-card-footer>
 </mat-card>
 
 

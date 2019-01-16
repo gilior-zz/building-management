@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {IAppState} from "../../../common/interfaces";
 import {Apartment, ApartmentDebt, ApartmentTenant} from '../../../../../../shared/models'
@@ -16,8 +16,14 @@ import APARTMENT_SELECTED = StoreConst.APARTMENT_SELECTED;
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit, OnDestroy {
+export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
   requiredFields: Array<string> = ['name', 'mail', 'family', 'phone']
+  maxLength: { [filed: string]: number } = {
+    'name': 10,
+    'mail': 30,
+    'family': 10,
+    'phone': 10,
+  }
   public apartmentForm: FormGroup;
   @Input() public apartment: Apartment
   private subscription: Subscription;
@@ -122,8 +128,11 @@ export class DetailComponent implements OnInit, OnDestroy {
     const infos = apartmentTenants.map(info => this.fb.group(info));
     infos.forEach(i => {
         for (let control in i.controls) {
+          // i.get(control).valueChanges.subscribe(j => console.log(j))
+
           if (this.requiredFields.indexOf(control) != -1)
-            i.get(control).setValidators(Validators.required)
+            i.get(control).setValidators([Validators.required, Validators.maxLength(this.maxLength[control])])
+
         }
       }
     )
@@ -140,11 +149,15 @@ export class DetailComponent implements OnInit, OnDestroy {
       phone: ['', Validators.required],
       status: 'tenant',
       apartmentID: this.apartmentService.selectedApartment.id,
-      id:-1,
+      id: -1,
       toDelete: false,
       isNew: true
     })
     this.apartmentTenants.push(grp);
+  }
+
+  ngAfterViewInit(): void {
+    // console.log('ngAfterViewInit')
   }
 
 
