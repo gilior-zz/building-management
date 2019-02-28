@@ -19,5 +19,12 @@ export module StoreConst {
   export const API_REQUEST = 'API_REQUEST';
 
   export const UPDATE_DATA = "UPDATE_DATA"
-  export const DATA_UPDATED_ = "DATA_UPDATED_"
+  export const NEW_DATA = "NEW_DATA"
+  export const LOAD_DATA = "LOAD_DATA"
+  export const DATA_LOADED_ = "DATA_LOADED_"
+  export const LOAD_SELECTED_APARTMENT_DETAILS = "LOAD_SELECTED_APARTMENT_DETAILS"
+  export const DATA_LOADED_SelectedApartmentDetails = "DATA_LOADED_SelectedApartmentDetails"
+  export const TENANT_DATA_UPDATED = "DATA_UPDATED_name"
+  export const TENANT_DATA_ADDED = 'TENANT_DATA_ADDED';
+
 }

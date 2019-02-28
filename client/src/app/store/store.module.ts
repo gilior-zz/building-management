@@ -19,7 +19,7 @@ import UPDATE_DATA = StoreConst.UPDATE_DATA;
 
 export class StoreModule {
 
-  rootEpic = combineEpics(this.epics.updateData);
+  rootEpic = combineEpics(this.epics.updateData,this.epics.getData,this.epics.newData);
   epicMiddleware = createEpicMiddleware();
 
   constructor(ngRedux: NgRedux<IAppState>, private epics: Epics) {

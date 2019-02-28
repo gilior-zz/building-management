@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {IAppState} from "../common/interfaces";
 import {NgRedux} from "@angular-redux/store";
 import {StoreConst} from "../common/const";
-import {Subject, Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {Apartment, ApartmentDebt, ApartmentsDash, ApartmentTenant} from '../../../../shared/models'
 import * as _ from 'lodash'
 import API_URL = StoreConst.API_URL;
@@ -32,7 +32,6 @@ export class ApartmentService {
   }
 
 
-
   get apartmentDebt(): number {
 
     return _.sumBy(this.selectedApartment.apartmentPayments, i => i.debt);
@@ -53,6 +52,7 @@ export class ApartmentService {
   }
 
   containsTenant(apartmentTenant: ApartmentTenant): boolean {
+    if (!this.selectedApartment) return false;
     let l = this.selectedApartment.apartmentTenants.filter(i => i.id === apartmentTenant.id);
     let res = l.length > 0;
     return res;

@@ -1,16 +1,38 @@
 <form (ngSubmit)="onLoginRequest()" [formGroup]="loginForm">
-  <div>
-    <label>אי מייל</label>
-    <input type="text" formControlName="email">
-  </div>
-  <div>
-    <label>טלפון</label>
-    <input type="text" formControlName="phone">
-  </div>
-  <div>
-    <label>סיסמה</label>
-    <input type="text" formControlName="pwd">
-  </div>
 
-<button type="submit">Login</button>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>אי מייל</mat-label>
+      <input [errorStateMatcher]="matcher" formControlName="email" matInput placeholder="שם">
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="emailCtrl.invalid">{{emailErrorMessage}}</mat-error>
+    </mat-form-field>
+  </p>
+
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>טלפון</mat-label>
+      <input [errorStateMatcher]="matcher" type="text" formControlName="phone" matInput placeholder="טלפון">
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-error *ngIf="phoneCtrl.invalid">{{phoneErrorMessage}}</mat-error>
+    </mat-form-field>
+  </p>
+
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>סיסמה</mat-label>
+      <input [errorStateMatcher]="matcher" formControlName="pwd" matInput placeholder="סיסמה">
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-error *ngIf="pwdCtrl.invalid">{{pwdErrorMessage}}</mat-error>
+    </mat-form-field>
+  </p>
+
+
+  <p>
+    <button [disabled]="loginForm.invalid" type="submit" mat-fab color="primary">כניסה</button>
+  </p>
+
 </form>

@@ -2,8 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {NavComponent} from './common/nav/nav.component';
-import {WorksComponent} from './works/works.component';
-import {InboxComponent} from './inbox/inbox.component';
 import {AppRoutesModule} from "./app-routes";
 import {HttpClientModule} from "@angular/common/http";
 import {ApartmentsModule} from "./apartments-module/apartments.module";
@@ -14,14 +12,16 @@ import {AuthService} from "./services/auth.service";
 import {MetaDataService} from "./services/meta-data.service";
 import {InvoiceModule} from "./invoice/invoice.module";
 import {IconService} from "./services/icon.service";
+import {WorksModule} from "./works/works.module";
+import {InboxModule} from "./inbox/inbox.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    WorksComponent,
-    InboxComponent,
+
+
 
     LoginComponent,
 
@@ -33,6 +33,8 @@ import {IconService} from "./services/icon.service";
     InvoiceModule,
     HttpClientModule,
     BrowserModule,
+    WorksModule,
+    InboxModule,
     AppRoutesModule
   ],
   providers: [AuthService, MetaDataService],

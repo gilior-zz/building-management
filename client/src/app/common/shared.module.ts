@@ -7,7 +7,7 @@ import {
   MatListModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSnackBarModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule,
@@ -33,7 +33,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatPaginatorModule,ReactiveFormsModule,
-  FormsModule,CdkTableModule,MatInputModule,MatRadioModule,MatCardModule,MatChipsModule]
+  FormsModule,CdkTableModule,MatInputModule,MatRadioModule,MatCardModule,MatChipsModule,MatSnackBarModule]
 })
 export class SharedModule {
 }

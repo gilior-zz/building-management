@@ -1,6 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+//@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+//@import "~@angular/material/prebuilt-themes/purple-green.css";
 @import "variables";
+
 * {
   //direction: rtl;
 }
-body { margin: 0; }
+@font-face {
+  font-family: Rubik-Regular;
+  src:url("assets/fonts/Rubik-Regular.ttf");
+}
+@font-face {
+  font-family: Rubik-Bold;
+  src:url("assets/fonts/Rubik-Bold.ttf");
+}
+body {
+  margin: 0;
+  font-family: Rubik-Regular !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

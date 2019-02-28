@@ -1,5 +1,5 @@
 import {Apartment, ApartmentDebt, User} from "../../../../shared/models";
-import {Action} from "redux";
+import {AnyAction} from "redux";
 import {AbstractControl, AsyncValidatorFn, ValidatorFn} from "@angular/forms";
 
 export interface IAppState {
@@ -34,7 +34,7 @@ export interface IMetadata {
   continueWith: string
 }
 
-export interface IActionPayload extends Action {
+export interface IActionPayload extends AnyAction {
 
   meta: IMetadata
 
@@ -53,6 +53,13 @@ export abstract class MyAbstractControl extends AbstractControl {
     })
     return name;
   }
+
+
+}
+
+export interface ICtrlErr {
+  name: string;
+  msg: string
 }
 
 

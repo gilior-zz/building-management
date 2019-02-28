@@ -14,4 +14,12 @@ export class DataService {
   udpateData(metaData: IMetadata): Observable<any> {
     return this.httpClient.put(metaData.url, metaData.body)
   }
+
+  newData(metaData: IMetadata): Observable<any> {
+    return this.httpClient.post(metaData.url, metaData.body)
+  }
+
+  loadData(metaData: IMetadata):Observable<any>{
+    return this.httpClient.get(metaData.url)
+  }
 }
