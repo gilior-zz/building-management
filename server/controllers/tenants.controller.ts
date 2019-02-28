@@ -8,6 +8,7 @@ export class TenantsController {
         router.get('/', this.loadTenants);
         router.get('/:id', this.loadTenantsPerId);
         router.put('/:id', this.updateTenant)
+        router.post('/:id', this.addTenant)
     }
 
     async loadTenants(req: Request, res: Response) {
@@ -26,5 +27,15 @@ export class TenantsController {
             {value: req.body.newVlaue, type: TYPES.NVarChar, name: 'newVlaue'}
         ]
         utility.loadContentAndSendToClient(req, 'ApartmentsTenantsUpdateById', res, undefined, ...proc_params);
+    }
+
+    private addTenant(req: Request, res: Response) {
+        let proc_params: proc_param[] = [
+            {value: req.params.id, type: TYPES.SmallInt, name: 'apartment_id'},
+            {value: req.body.columnName, type: TYPES.NVarChar, name: 'columnName'},
+            {value: req.body.newVlaue, type: TYPES.NVarChar, name: 'newVlaue'}
+        ]
+        utility.loadContentAndSendToClient(req, 'ApartmentsTenantsAddNew', res, undefined, ...proc_params);
+
     }
 }
