@@ -1,0 +1,22 @@
+<div>
+  <h2>
+    <div>
+
+      <!--<mark>{{apartmentService?.selectedApartment?.id}}</mark>-->
+      <mat-chip color="primary" selected>דירה {{apartmentService?.selectedApartment?.id}}</mat-chip>
+    </div>
+
+
+    <div>
+      <!--<mark>{{apartmentService?.selectedApartment?.floor}}</mark>-->
+      <mat-chip color="primary" selected>קומה {{apartmentService?.selectedApartment?.floor}}</mat-chip>
+
+    </div>
+    <div>
+      <!--<mark>{{debt}}</mark>-->
+      <mat-chip color="primary" selected>יתרת חוב {{debt}}</mat-chip>
+
+    </div>
+    <mat-icon matSuffix *ngIf="hasSelectedApartment" svgIcon="{{debtIcon}}"></mat-icon>
+  </h2>
+</div>

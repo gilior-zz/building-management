@@ -1,7 +1,9 @@
 <mat-card>
+
   <div [@color]="isOpen ? true : false" class="card-wrp">
-    <mat-card-header>
-      <mat-card-title>
+    <!--<div class="curtain"></div>-->
+      <mat-card-header>
+      <mat-card-title [style.textDecoration]="abstractControl.get('toDelete').value?'line-through':'none'">
         <!--איש קשר #{{index + 1}}-->
 
         {{nameCtrl.value}}
@@ -9,8 +11,8 @@
 
 
       </mat-card-title>
-      <mat-chip-list>
-        <mat-chip (click)="toggleDeleted()" *ngIf="userIsTenant" [@flyInOut]="isOpen ? true : false" color="warn"
+      <mat-chip-list [style.visibility]="userIsTenant?'visible':'hidden'">
+        <mat-chip (click)="toggleDeleted()" [@flyInOut]="isOpen ? true : false" color="warn"
                   selected>{{actionBtnTxt}}
         </mat-chip>
 
@@ -21,10 +23,10 @@
       <!--</button>-->
     </mat-card-header>
     <form [formGroup]="abstractControl">
-      <h4>
-        <!--<button [disabled]="!userIsTenant" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>-->
+      <!--<h4>-->
+      <!--&lt;!&ndash;<button [disabled]="!userIsTenant" (click)="toggleDeleted()" type="button">{{actionBtnTxt}}</button>&ndash;&gt;-->
 
-      </h4>
+      <!--</h4>-->
 
       <!--<label>שם פרטי:-->
       <!--<input [readonly]="disableInput" type="text" formControlName="name">-->
@@ -37,7 +39,9 @@
       <!--</mat-error>-->
       <!--<mat-icon *ngIf="userIsTenant && isEditing" svgIcon="edit"></mat-icon>-->
       <!--</mat-form-field>-->
-      <app-info-form-field ctrlName="name" [userIsTenant]="userIsTenant" [abstractControl]="nameCtrl"
+      <app-info-form-field [maxlength]="10" type="text" plcHldr="שם" [errs]="errs['name']" ctrlName="name"
+                           [userIsTenant]="userIsTenant"
+                           [abstractControl]="nameCtrl"
                            [formGroup]="abstractControl"></app-info-form-field>
 
 
@@ -45,26 +49,34 @@
       <!--<input [readonly]="disableInput" type="text" formControlName="family">-->
       <!--</label>-->
 
-      <mat-form-field class="">
-        <input maxlength="10" matInput placeholder="משפחה" formControlName="family">
-        <mat-error *ngIf="familyCtrl.hasError('required')">
-          יש להזין משפחה
-        </mat-error>
-        <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
-      </mat-form-field>
+      <!--<mat-form-field class="">-->
+      <!--<input maxlength="10" matInput placeholder="משפחה" formControlName="family">-->
+      <!--<mat-error *ngIf="familyCtrl.hasError('required')">-->
+      <!--יש להזין משפחה-->
+      <!--</mat-error>-->
+      <!--<mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>-->
+      <!--</mat-form-field>-->
+
+      <app-info-form-field [maxlength]="10" type="text" plcHldr="משפחה" [errs]="errs['family']" ctrlName="family"
+                           [userIsTenant]="userIsTenant" [abstractControl]="familyCtrl"
+                           [formGroup]="abstractControl"></app-info-form-field>
 
 
       <!--<label>טלפון:-->
       <!--<input [readonly]="disableInput" type="text" formControlName="phone">-->
       <!--</label>-->
 
-      <mat-form-field class="">
-        <input maxlength="10" matInput placeholder="טלפון" formControlName="phone">
-        <mat-error *ngIf="phoneCtrl.hasError('required')">
-          יש להזין טלפון
-        </mat-error>
-        <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
-      </mat-form-field>
+      <!--<mat-form-field class="">-->
+      <!--<input maxlength="10" matInput placeholder="טלפון" formControlName="phone">-->
+      <!--<mat-error *ngIf="phoneCtrl.hasError('required')">-->
+      <!--יש להזין טלפון-->
+      <!--</mat-error>-->
+      <!--<mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>-->
+      <!--</mat-form-field>-->
+
+      <app-info-form-field [maxlength]="10" type="number" plcHldr="טלפון" [errs]="errs['phone']" ctrlName="phone"
+                           [userIsTenant]="userIsTenant" [abstractControl]="phoneCtrl"
+                           [formGroup]="abstractControl"></app-info-form-field>
 
 
       <!--<label>אי מייל:-->
@@ -72,26 +84,34 @@
       <!--</label>-->
 
 
-      <mat-form-field class="">
-        <input maxlength="30" matInput placeholder="מייל" formControlName="email">
-        <mat-error *ngIf="emailCtrl.hasError('email') && !emailCtrl.hasError('required')">
-          מייל אינו חוקי
-        </mat-error>
-        <mat-error *ngIf="emailCtrl.hasError('required')">
-          יש להזין מייל
-        </mat-error>
-        <mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>
-      </mat-form-field>
+      <!--<mat-form-field class="">-->
+      <!--<input maxlength="30" matInput placeholder="מייל" formControlName="email">-->
+      <!--<mat-error *ngIf="emailCtrl.hasError('email') && !emailCtrl.hasError('required')">-->
+      <!--מייל אינו חוקי-->
+      <!--</mat-error>-->
+      <!--<mat-error *ngIf="emailCtrl.hasError('required')">-->
+      <!--יש להזין מייל-->
+      <!--</mat-error>-->
+      <!--<mat-icon *ngIf="userIsTenant" svgIcon="edit"></mat-icon>-->
+      <!--</mat-form-field>-->
+
+      <app-info-form-field [maxlength]="100" type="email" plcHldr="מייל" [errs]="errs['email']" ctrlName="email"
+                           [userIsTenant]="userIsTenant" [abstractControl]="emailCtrl"
+                           [formGroup]="abstractControl"></app-info-form-field>
 
 
       <div>בעלות:</div>
       <!--<label><input type="radio" formControlName="status" value="tenant">דייר</label>-->
       <!--<label><input type="radio" formControlName="status" value="owner">בעל דירה</label>-->
 
-      <mat-radio-group formControlName="status">
-        <mat-radio-button value="tenant">דייר</mat-radio-button>
-        <mat-radio-button value="owner">בעלים</mat-radio-button>
-      </mat-radio-group>
+      <!--<mat-radio-group formControlName="status">-->
+      <!--<mat-radio-button value="tenant">דייר</mat-radio-button>-->
+      <!--<mat-radio-button value="owner">בעלים</mat-radio-button>-->
+      <!--</mat-radio-group>-->
+
+      <app-info-form-field [userIsOwner]="userIsOwner" type="radio" [items]="items" ctrlName="status"
+                           [userIsTenant]="userIsTenant" [abstractControl]="statusCtrl"
+                           [formGroup]="abstractControl"></app-info-form-field>
 
 
     </form>

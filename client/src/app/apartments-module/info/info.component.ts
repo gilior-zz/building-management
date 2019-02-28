@@ -1,9 +1,13 @@
 import {AfterViewInit, Component, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {AbstractControl,FormControl} from "@angular/forms";
+import {AbstractControl} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {animate, group, state, style, transition, trigger} from "@angular/animations";
-import {Subject} from "rxjs";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Observable, Subject} from "rxjs";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import {ICtrlErr} from "../../common/interfaces";
+import {Apartment} from "../../../../../shared/models";
+import {InfoService} from "../../services/info.service";
+import {select} from "@angular-redux/store";
 
 @Component({
   selector: 'info',
@@ -16,53 +20,59 @@ import {debounceTime, distinctUntilChanged} from "rxjs/operators";
         width: '*',
         opacity: 1
       })),
-      transition('false => true', [
-        style({width: '*', opacity: 0}),
-        group([
-          animate('0.3s 0.1s ease', style({
-
-            width: '*'
-          })),
-          animate('0.3s ease', style({
-            opacity: 1
-          }))
-        ])
-      ]),
-      transition('true => false', [
-        group([
-          animate('0.3s ease', style({
-
-            width: '*'
-          })),
-          animate('0.3s 0.2s ease', style({
-            opacity: 0
-          }))
-        ])
-      ])
     ]),
     trigger('color', [
-      state('false', style({backgroundImage: 'none'})),
+      state('false', style({background: 'none'})),
       state('true', style({
-        backgroundImage: 'linear-gradient(to right top, #5a651b, #6f761d, #87861e, #a0971f, #bba721, #b7b738, #b4c54f, #b0d466, #96df97, #90e4c2, #a4e6de, #c6e6ea)'
+        background: 'linear-gradient(135deg, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%)'
       })),
-      transition('true<=>false', [
-        animate('.0s ease-out')
-      ]),
+      transition('false <=> true', animate('0.3s 0.1s ease'))
     ])
-  ]
+  ],
+  providers: [InfoService]
+
 })
 export class InfoComponent implements OnInit, OnChanges, AfterViewInit {
+  errs: { [key: string]: ICtrlErr[] } =
+    {
+      'name': [
+        <ICtrlErr>{msg: 'יש להזין שם', name: 'required'},
+        <ICtrlErr>{msg: 'יש להזין עד 10 תווים', name: 'maxlength'}
+      ],
+      'family': [
+        <ICtrlErr>{msg: 'יש להזין משפחה', name: 'required'},
+        <ICtrlErr>{msg: 'יש להזין עד 10 תווים', name: 'maxlength'}
+      ],
+      'phone': [
+        <ICtrlErr>{msg: 'יש להזין טלפון', name: 'required'},
+        <ICtrlErr>{msg: 'חובה להזין 10 ספרות', name: 'minlength'},
+        <ICtrlErr>{msg: 'חובה להזין 10 ספרות', name: 'maxlength'},
+        <ICtrlErr>{msg: 'יש להתחיל ב 05', name: 'invalidPtrn'},
+      ],
+      'email': [
+        <ICtrlErr>{msg: 'יש להזין אימייל', name: 'required'},
+        <ICtrlErr>{msg: 'אימייל אינו חוקי', name: 'invalidPtrn'},
+      ],
+    }
+
+  items: { [key: string]: string } = {
+    'tenant': 'דייר',
+    'owner': 'בעלים'
+  }
+
+  @Input() userIsOwner: boolean;
+  @select(['selectedApartment', 'apartmentTenants']) selectedApartment$: Observable<Apartment>
   @Input() index: number;
   @Input() abstractControl: AbstractControl
   isEditing: boolean;
+  fields = ['name', 'family', 'phone', 'email', 'status']
   private phone: string;
   private email: string;
   private id: number;
   private isNew = false;
   private apartmentID: number;
   private isOpen = false;
-  private searchText$ = new Subject<string>();
-
+  private deleteRequest$ = new Subject<boolean>();
   // get currentUserDetails(): boolean {
   //   let userID = this.authService.user.id;
   //   let currentUserDetails = userID === this.id;
@@ -73,13 +83,13 @@ export class InfoComponent implements OnInit, OnChanges, AfterViewInit {
   //   return !(this.currentUserDetails || this.isNew);
   // }
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private infoService: InfoService) {
   }
 
   get userIsTenant(): boolean {
     return this.id === this.authService.user.id
-
   }
+
 
   get actionBtnTxt(): string {
     let markAsDeleted = this.abstractControl.get('toDelete').value;
@@ -88,6 +98,10 @@ export class InfoComponent implements OnInit, OnChanges, AfterViewInit {
 
   get nameCtrl(): AbstractControl {
     return this.abstractControl.get('name')
+  }
+
+  get statusCtrl(): AbstractControl {
+    return this.abstractControl.get('status')
   }
 
   get familyCtrl(): AbstractControl {
@@ -108,48 +122,69 @@ export class InfoComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.isOpen = false;
+    if (!this.abstractControl.get('toDelete').value)
+      this.isOpen = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['abstractControl']) {
-      // this.abstractControl.get('name').setValidators(Validators.maxLength(7))
-      // this.abstractControl.get('family').setValidators(Validators.maxLength(7))
-    }
-    if (changes['abstractControl'].isFirstChange()) {
+    // if (changes['abstractControl']) {
+    //   // this.abstractControl.get('name').setValidators(Validators.maxLength(7))
+    //   // this.abstractControl.get('family').setValidators(Validators.maxLength(7))
+    // }
+    if (changes['abstractControl'] && changes['abstractControl'].isFirstChange()) {
       this.phone = this.abstractControl.get('phone').value;
       this.email = this.abstractControl.get('email').value;
       this.id = +this.abstractControl.get('id').value;
       this.apartmentID = +this.abstractControl.get('apartmentID').value;
-      this.isNew = this.abstractControl.get('isNew').value === 'true';
+      this.isNew = this.abstractControl.get('isNew').value === true;
     }
   }
 
-  ngOnInit() {
-    if (!this.userIsTenant)
+  setCtrlStatus(toDisable = false) {
+    if (!toDisable && this.isNew)
+      this.abstractControl.enable();
+    else if (toDisable || !this.userIsTenant)
       this.abstractControl.disable();
+    else
+      this.abstractControl.enable();
 
-    this.searchText$.pipe(
+  }
+
+
+  ngOnInit() {
+    // if (!this.userIsTenant)
+    //   this.abstractControl.disable();
+    this.setCtrlStatus();
+    this.deleteRequest$.pipe(
       debounceTime(500),
       distinctUntilChanged())
       .subscribe(i => {
-        console.log(i);
-        this.isEditing = false;
+        this.infoService.deleteTenant(i);
+        this.setCtrlStatus(i)
 
       })
+    this.infoService.tenantId = this.id;
+
+    this.selectedApartment$.subscribe((i) => {
+
+    })
+
+    if (!this.userIsOwner)
+      this.abstractControl.get('status').disable();
   }
 
   toggleDeleted() {
     let markAsDeleted = !this.abstractControl.get('toDelete').value;
+    // this.infoService.deleteTenant(markAsDeleted);
+    // this.setCtrlStatus(markAsDeleted)
     this.abstractControl.get('toDelete').setValue(markAsDeleted);
+
+    this.deleteRequest$.next(markAsDeleted);
   }
 
   ngAfterViewInit(): void {
     // console.log('ngAfterViewInit')
   }
 
-  onKeyUp(target: HTMLInputElement) {
-    this.isEditing = true;
-    this.searchText$.next(target.value);
-  }
+
 }

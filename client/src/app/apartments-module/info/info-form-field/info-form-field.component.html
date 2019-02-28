@@ -1,10 +1,57 @@
 <form [formGroup]="formGroup">
-  <mat-form-field class="">
-    <input (keyup)="onKeyUp($event.target)" maxlength="10" matInput placeholder="שם" [formControl]="abstractControl">
-    <mat-error *ngIf="abstractControl.hasError('required')">
-      חובה להזין ערך
-    </mat-error>
-    <mat-icon *ngIf="userIsTenant && isEditing" svgIcon="edit"></mat-icon>
-  </mat-form-field>
+
+  <p [ngSwitch]="type">
+    <mat-form-field *ngSwitchDefault appearance="fill">
+      <mat-label floatLabel="always">{{plcHldr}}</mat-label>
+      <input [maxlength]="maxlength"  type="{{type}}" [errorStateMatcher]="matcher" [formControl]="abstractControl"
+             (keyup)="onKeyUp($event.target)" matInput>
+      <mat-error *ngFor="let err of errs">
+        <ng-container *ngIf="abstractControl.hasError(err.name)">
+          {{err.msg}}
+        </ng-container>
+
+      </mat-error>
+
+      <mat-icon color="#3f51b5" [style.visibility]="ShowIcon?'visible':'hidden'" matSuffix [@openClose]="isSaved ? true : false"
+                svgIcon="saved"></mat-icon>
+
+    </mat-form-field>
+
+    <mat-radio-group (change)="onRadioChange($event)" *ngSwitchCase="'radio'" [formControl]="abstractControl">
+      <mat-radio-button *ngFor="let item of items| keyvalue" value="{{item.key}}">{{item.value}}</mat-radio-button>
+      <mat-icon color="#3f51b5" [style.visibility]="ShowIcon?'visible':'hidden'"  matSuffix [@openClose]="isSaved ? true : false"
+                svgIcon="saved"></mat-icon>
+    </mat-radio-group>
+  </p>
+
+
+  <!--<mat-form-field floatLabel="always" class="">-->
+  <!--<input (keyup)="onKeyUp($event.target)" maxlength="10" matInput placeholder="{{plcHldr}}"-->
+  <!--[formControl]="abstractControl">-->
+  <!--&lt;!&ndash;<mat-error *ngIf="abstractControl.hasError('required')">&ndash;&gt;-->
+  <!--&lt;!&ndash;יש להזין משפחה&ndash;&gt;-->
+  <!--&lt;!&ndash;</mat-error>&ndash;&gt;-->
+
+  <!--<mat-error *ngFor="let err of errs">-->
+  <!--<ng-container *ngIf="abstractControl.hasError(err.name)">-->
+  <!--{{err.msg}}-->
+  <!--</ng-container>-->
+
+  <!--</mat-error>-->
+  <!--&lt;!&ndash;<ng-container *ngIf="abstractControl.invalid">&ndash;&gt;-->
+  <!--&lt;!&ndash;<mat-error *ngIf="abstractControl.hasError('required')">&ndash;&gt;-->
+  <!--&lt;!&ndash;חובה להזין ערך&ndash;&gt;-->
+  <!--&lt;!&ndash;</mat-error>&ndash;&gt;-->
+  <!--&lt;!&ndash;<ng-container *ngFor="let err of errs">&ndash;&gt;-->
+  <!--&lt;!&ndash;<mat-error >&ndash;&gt;-->
+  <!--&lt;!&ndash;{{err.msg}}&ndash;&gt;-->
+  <!--&lt;!&ndash;</mat-error>&ndash;&gt;-->
+  <!--&lt;!&ndash;</ng-container>&ndash;&gt;-->
+  <!--&lt;!&ndash;</ng-container>&ndash;&gt;-->
+
+
+  <!--&lt;!&ndash;<mat-icon [@flyInOut]="'in'" *ngIf="isEditing || isSaved" svgIcon="{{icon}}"></mat-icon>&ndash;&gt;-->
+  <!--<mat-icon [@flyInOut]="'in'" *ngIf="isSaved" svgIcon="done"></mat-icon>-->
+  <!--</mat-form-field>-->
 </form>
 

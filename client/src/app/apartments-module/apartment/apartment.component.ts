@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
-import {IAppState} from "../../common/interfaces";
+import {IActionPayload, IAppState} from "../../common/interfaces";
 import {Apartment, ApartmentDebt, ApartmentTenant} from '../../../../../shared/models'
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ApartmentService} from "../../services/payments.service";
@@ -8,7 +8,6 @@ import {Subscription} from "rxjs";
 import {AuthService} from "../../services/auth.service";
 import {StoreConst} from "../../common/const";
 import {NgRedux} from "@angular-redux/store";
-import APARTMENT_SELECTED = StoreConst.APARTMENT_SELECTED;
 
 @Component({
   selector: 'apartment',
@@ -29,7 +28,7 @@ export class ApartmentComponent implements OnInit, OnDestroy {
               private ngRedux: NgRedux<IAppState>) {
 
     this.subscription = this.apartmentService.selectedApartmentdSource$.subscribe(() => {
-        this.payments = this.apartmentService.selectedApartment.apartmentPayments;
+      this.payments = this.apartmentService.selectedApartment.apartmentPayments;
     })
 
   }
@@ -47,19 +46,14 @@ export class ApartmentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = +params.get('id');
-      this.apartmentService.loadSelectedApartmentDetails(id)
-        .subscribe((apartment: [[ApartmentDebt], [ApartmentTenant], [Apartment]]) => {
-          this.ngRedux.dispatch({
-            type: APARTMENT_SELECTED,
-            meta: null,
-            payload: <Apartment>{
-              floor: apartment[2][0].floor,
-              id: apartment[2][0].id,
-              apartmentTenants: apartment[1],
-              apartmentPayments: apartment[0]
-            },
-          })
-        })
+      this.ngRedux.dispatch(<IActionPayload>{
+        type: StoreConst.LOAD_DATA,
+        meta: {
+          continueWith: StoreConst.DATA_LOADED_ + 'SelectedApartmentDetails',
+          body: undefined,
+          url: `${StoreConst.API_URL}apartments/${id}`
+        }
+      })
     })
   }
 }

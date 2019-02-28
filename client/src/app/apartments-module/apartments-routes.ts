@@ -8,10 +8,10 @@ import {AuthGuardService} from "../services/auth.guard";
 const routes: Route[] = [
   {
     path: '', canActivateChild: [AuthGuardService], children: [
-    {path: 'apartments', component: ApartmentsComponent},
-    {path: 'apartments/:id', component: ApartmentComponent},
-    {path: '', redirectTo: 'apartments', pathMatch: 'full'},
-  ]
+      {path: 'apartments', component: ApartmentsComponent},
+      {path: 'apartments/:id', component: ApartmentComponent},
+      {path: '', redirectTo: 'apartments', pathMatch: 'full'},
+    ]
   }
 
 

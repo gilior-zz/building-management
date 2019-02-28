@@ -1,11 +1,28 @@
-form {
-  mat-form-field {
-    display: block;
-    input {
-      width: 80%;
-    }
-    mat-icon {
-      height: 15px;
+//form {
+//  mat-form-field {
+//    display: block;
+//    input {
+//      width: 80%;
+//    }
+//    mat-icon {
+//      height: 15px;
+//    }
+//  }
+//}
+input {
+  //width: 80%;
+}
+mat-radio-group{
+
+  display:flex;
+  justify-content: space-between;
+  mat-radio-button {
+
+    ::ng-deep {
+      .mat-radio-label-content {
+        padding: 0 0 0 8px;
+      }
     }
   }
 }
+

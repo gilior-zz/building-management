@@ -1,20 +1,25 @@
 <!--<h3><i>Using FormArray to add groups</i></h3>-->
+<app-detail-header *ngIf="showHeader" [debt]="apartmentForm.value.debt"></app-detail-header>
+
+
 <h2>
-  דירה
-  <mark>{{apartmentService?.selectedApartment?.id}}</mark>
-  קומה
-  <mark>{{apartmentService?.selectedApartment?.floor}}</mark>
-  יתרת חוב
-  <mark>{{apartmentForm.value.debt}}</mark>
-  <mat-icon *ngIf="hasSelectedApartment" svgIcon="{{debtIcon}}"></mat-icon>
+  <span>
+    דיירים
+  </span>
+&nbsp;
+&nbsp;
+  <button *ngIf="showAddButton" (click)="addTenant()" mat-icon-button color="primary">
+    <mat-icon [svgIcon]="'add_contact'" aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
+  </button>
 </h2>
 
+
 <form *ngIf="apartmentService?.selectedApartment" (ngSubmit)="onSubmit()" [formGroup]="apartmentForm">
-  <br><br>
+
   <div class="info-container" formArrayName="apartmentTenants">
     <div *ngFor="let info of apartmentTenants.controls; let i=index" [formGroupName]="i">
       <!-- The repeated info template -->
-      <info [abstractControl]="info" [index]="i"></info>
+      <info [userIsOwner]="showAddButton" [abstractControl]="info" [index]="i"></info>
       <!--<br>-->
       <!-- End of the repeated address template -->
     </div>
