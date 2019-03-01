@@ -48,6 +48,9 @@ export interface ApartmentTenant {
     phone: string;
     email: string;
     status: 'tenant' | 'owner';
+    pwd:string;
 }
+
+export type PartialApartmentTenant=Partial<ApartmentTenant>;
 
 
