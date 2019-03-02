@@ -97,7 +97,7 @@ export class InfoFormFieldComponent implements OnInit, OnChanges {
       .subscribe(i => {
         // this.isEditing = false;
         if (!this.abstractControl.valid) return
-        if (!this.fieldEditorService.formField.value || this.fieldEditorService.formField.value === this.fieldEditorService.originalValue.value.trim()) return;
+        if (!this.fieldEditorService.formField.value.trim() || this.fieldEditorService.formField.value.trim() === this.fieldEditorService.originalValue.value.trim()) return;
         this.isSaved = false;
         this.fieldEditorService.saveValue(this.isNew);
 

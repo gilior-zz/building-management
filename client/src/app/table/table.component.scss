@@ -41,3 +41,42 @@
 //.mat-column-created {
 //  max-width: 124px;
 //}
+
+.example-container {
+  height: 80vh;
+  overflow: auto;
+  margin: 5%;
+  mat-header-cell{
+    justify-content: center;
+  }
+  mat-cell{
+    justify-content: center;
+    direction: ltr;
+    display: flex;
+    font-weight: bold;
+  }
+  mat-row{
+    cursor: pointer;
+    &:hover{
+      background: rgba(29, 143, 224,0.5);
+      mat-cell{
+        color:white;
+
+      }
+
+    }
+  }
+}
+
+//mat-table {
+//  width: 100%;
+//}
+
+//mat-footer-row {
+//  font-weight: bold;
+//}
+
+//.mat-table-sticky {
+//  border-top: 1px solid #e0e0e0;
+//}
+

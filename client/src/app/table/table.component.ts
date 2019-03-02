@@ -6,6 +6,8 @@ import {IAppState} from "../common/interfaces";
 import {ApartmentService} from "../services/payments.service";
 import {NgRedux} from "@angular-redux/store";
 import {ApartmentsDash} from '../../../../shared/models'
+import {ActivatedRoute, Router} from "@angular/router";
+
 /**
  * @title Table retrieving data through HTTP
  */
@@ -15,7 +17,7 @@ import {ApartmentsDash} from '../../../../shared/models'
   templateUrl: './table.component.html',
 })
 export class TableComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['apartment_id', 'floor', 'debt', 'details'];
+  displayedColumns = ['apartment_id', 'numOfTenants', 'floor', 'debt'];
   exampleDatabase: ExampleHttpDao | null;
   resultsLength = 0;
   isLoadingResults = true;
@@ -27,7 +29,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   constructor(private http: HttpClient,
               private  apartmentService: ApartmentService,
-              private ngRedux: NgRedux<IAppState>) {
+              private ngRedux: NgRedux<IAppState>,private router:Router,private activatedRoute:ActivatedRoute) {
     this.ngRedux.select('apartmentsDash').subscribe((apartmentsDash: ApartmentsDash[]) => {
         this.apartmentsDash = apartmentsDash;
         this.dataSource = new MatTableDataSource(this.apartmentService.apartmentsDash);
@@ -76,6 +78,10 @@ export class TableComponent implements OnInit, AfterViewInit {
     //       return observableOf([]);
     //     })
     //   ).subscribe(data => this.data = data);
+  }
+
+  onRowClick(row:ApartmentsDash) {
+    this.router.navigate([`./${row.apartment_id}`],{relativeTo:this.activatedRoute});
   }
 }
 

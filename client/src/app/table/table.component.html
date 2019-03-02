@@ -17,6 +17,11 @@
         <mat-cell *matCellDef="let row">{{ row.apartment_id }}</mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="numOfTenants">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>כמות דיירים</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.numOfTenants }}</mat-cell>
+      </ng-container>
+
 
       <ng-container matColumnDef="floor">
         <mat-header-cell *matHeaderCellDef mat-sort-header>קומה</mat-header-cell>
@@ -24,23 +29,23 @@
       </ng-container>
 
       <ng-container matColumnDef="debt">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>יתרת חוב</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.debt }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>יתרה</mat-header-cell>
+        <mat-cell [style.color]="row.debt<0?'red':'green'" *matCellDef="let row">{{ row.debt }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="details">
-        <mat-header-cell *matHeaderCellDef>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <a mat-icon-button routerLink="{{row.apartment_id}}">
-            <mat-icon>info</mat-icon>
-          </a>
-        </mat-cell>
-      </ng-container>
+      <!--<ng-container matColumnDef="details">-->
+        <!--<mat-header-cell *matHeaderCellDef>-->
+        <!--</mat-header-cell>-->
+        <!--<mat-cell *matCellDef="let row">-->
+          <!--<a mat-icon-button routerLink="{{row.apartment_id}}">-->
+            <!--<mat-icon>info</mat-icon>-->
+          <!--</a>-->
+        <!--</mat-cell>-->
+      <!--</ng-container>-->
 
 
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row (click)="onRowClick(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
 

@@ -1,19 +1,6 @@
 
 
 mat-card {
-  //mat-card-title{
-  //  height: 45.6px !important;
-  //}
-  //border: solid;
-  mat-form-field {
-    display: block;
-    //input {
-    //  width: 80%;
-    //}
-    mat-icon {
-      height: 15px;
-    }
-  }
   .card-wrp {
     padding: 5px;
     border-radius: 3px;
@@ -22,15 +9,7 @@ mat-card {
       align-items: baseline;
       justify-content: space-between;
     }
-    .curtain {
-      z-index: 1;
-      background: burlywood;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+
     mat-radio-button {
       ::ng-deep {
         .mat-radio-label-content {
