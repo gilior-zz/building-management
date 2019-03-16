@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
@@ -8,23 +8,35 @@ import {NgRedux} from "@angular-redux/store";
 import {Apartment, ApartmentTenant} from '../../../../shared/models'
 import {mailPtrn, patternValidator, phonePtrn, pwdPtrn} from "../services/pattern.directive";
 import {MyErrorStateMatcher} from "../services/error-state-matcher";
-import USER_STATUS_CHANGED = StoreConst.USER_STATUS_CHANGED;
 import {MatSnackBar} from "@angular/material";
+import {animate, style, transition, trigger} from "@angular/animations";
+import USER_STATUS_CHANGED = StoreConst.USER_STATUS_CHANGED;
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [trigger('myInsertRemoveTrigger', [
+    transition(':enter', [
+      style({opacity: 0}),
+      animate('5s', style({opacity: 1})),
+    ]),
+    transition(':leave', [
+      animate('5s', style({opacity: 0}))
+    ])
+  ]),]
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   matcher = new MyErrorStateMatcher();
+  private isSending = false;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
               private  ngRedux: NgRedux<IAppState>,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar, private changeDetectorRef: ChangeDetectorRef) {
     this.buildForm();
   }
 
@@ -71,12 +83,17 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('pwd')
   }
 
+  get isDisabled(): boolean {
+    return this.loginForm.invalid || this.isSending;
+  }
+
   ngOnInit() {
     // this.authService.isLoggedIn = false;
     //  localStorage.setItem('isLoggedIn', JSON.stringify(false))
   }
 
   onLoginRequest() {
+    this.isSending = true;
     let email = this.loginForm.value.email;
     let phone = this.loginForm.value.phone;
     let pwd = this.loginForm.value.pwd;
@@ -97,9 +114,18 @@ export class LoginComponent implements OnInit {
           this.router.navigate([goTo])
         }
         else
-          // this.router.navigate([login])
+        // this.router.navigate([login])
           this.openSnackBar();
       })
+  }
+
+  openSnackBar() {
+    let l = this.snackBar.open('אחד הפרטים אינו תקין', undefined, {duration: 2000})
+    l.afterDismissed().subscribe(() => {
+      this.isSending = false;
+      this.changeDetectorRef.detectChanges();
+    })
+
   }
 
   private buildForm() {
@@ -108,9 +134,5 @@ export class LoginComponent implements OnInit {
       phone: ['0544715150', [Validators.required, Validators.minLength(10), Validators.maxLength(10), patternValidator(phonePtrn)]],
       pwd: ['1!qQqweq', [Validators.required, Validators.minLength(8), Validators.maxLength(8), patternValidator(pwdPtrn)]]
     })
-  }
-
-  openSnackBar() {
-    this.snackBar.open('אחד הפרטים אינו תקין',undefined,{duration:2000});
   }
 }

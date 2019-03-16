@@ -4,6 +4,7 @@ import {PaymentsController} from "../controllers/payments.controller";
 import {LoginController} from "../controllers/login.controller";
 import {ApartmentController} from "../controllers/apartments.controller";
 import {MetadataController} from "../controllers/metadata.controller";
+import {WorksController} from "../controllers/works.controller";
 
 
 export class MyRouter {
@@ -30,6 +31,10 @@ export class MyRouter {
         router = Router();
         new MetadataController(router);
         app.use('/api/metadata', router);
+
+        router = Router();
+        new WorksController(router);
+        app.use('/api/works', router);
     }
 }
 

@@ -1,4 +1,4 @@
-<form (ngSubmit)="onLoginRequest()" [formGroup]="loginForm">
+<form  (ngSubmit)="onLoginRequest()" [formGroup]="loginForm">
 
 
   <p>
@@ -32,7 +32,7 @@
 
 
   <p>
-    <button [disabled]="loginForm.invalid" type="submit" mat-fab color="primary">כניסה</button>
+    <button [disabled]="isDisabled" type="submit" mat-fab color="primary">כניסה</button>
   </p>
 
 </form>

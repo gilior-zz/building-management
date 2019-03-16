@@ -6,6 +6,8 @@ export interface proc_param {
 
 export interface ApartmentDebt {
     month: number;
+    numOfTenants;
+    number;
     year: number;
     amount: number;
     id: number;
@@ -20,6 +22,7 @@ export type User = ApartmentTenant;
 
 export interface ApartmentsDash {
     apartment_id: number;
+    numOfTenants: number;
     floor: number,
     debt: number;
 }
@@ -48,9 +51,26 @@ export interface ApartmentTenant {
     phone: string;
     email: string;
     status: 'tenant' | 'owner';
-    pwd:string;
+    pwd: string;
 }
 
-export type PartialApartmentTenant=Partial<ApartmentTenant>;
+export type PartialApartmentTenant = Partial<ApartmentTenant>;
+
+
+export interface IWork {
+    id: number;
+    title: string;
+    description: string;
+    fromDate: Date;
+    toDate: Date;
+    provider: string;
+    payment: number;
+    workExtraDetails?: IWorkExtraDetails;
+}
+
+export interface IWorkExtraDetails {
+    id: number;
+    data: Int8Array;
+}
 
 

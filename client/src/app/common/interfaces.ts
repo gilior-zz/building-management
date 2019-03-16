@@ -1,4 +1,4 @@
-import {Apartment, ApartmentDebt, User} from "../../../../shared/models";
+import {Apartment, ApartmentDebt, User,IWork} from "../../../../shared/models";
 import {AnyAction} from "redux";
 import {AbstractControl, AsyncValidatorFn, ValidatorFn} from "@angular/forms";
 
@@ -6,7 +6,8 @@ export interface IAppState {
   apartmentsDash: ApartmentDebt[];
   selectedApartment: Apartment;
   metaData: MetaData,
-  user: User
+  user: User,
+  works:IWork[]
 }
 
 export interface MetaData {
@@ -61,8 +62,3 @@ export interface ICtrlErr {
   name: string;
   msg: string
 }
-
-
-
-
-

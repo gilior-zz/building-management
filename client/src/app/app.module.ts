@@ -14,6 +14,8 @@ import {InvoiceModule} from "./invoice/invoice.module";
 import {IconService} from "./services/icon.service";
 import {WorksModule} from "./works/works.module";
 import {InboxModule} from "./inbox/inbox.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ExpandedModule} from "./works - Copy/works.module";
 
 
 @NgModule({
@@ -27,13 +29,15 @@ import {InboxModule} from "./inbox/inbox.module";
 
   ],
   imports: [
+    BrowserAnimationsModule,
     SharedModule,
     StoreModule,
     ApartmentsModule,
     InvoiceModule,
     HttpClientModule,
     BrowserModule,
-    WorksModule,
+
+    ExpandedModule,
     InboxModule,
     AppRoutesModule
   ],

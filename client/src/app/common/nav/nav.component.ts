@@ -5,12 +5,18 @@ import {map} from 'rxjs/operators';
 import {AuthService} from "../../services/auth.service";
 import {MetaDataService} from "../../services/meta-data.service";
 import {ApartmentTenant} from '../../../../../shared/models';
+import {RouterOutlet} from "@angular/router";
+import {slideInAnimation} from "../animations";
 
 
 @Component({
   selector: 'nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
+  animations: [
+    slideInAnimation
+    // animation triggers go here
+  ]
 })
 export class NavComponent {
   isHandset = false;
@@ -44,5 +50,9 @@ export class NavComponent {
 
   onLogOut() {
     this.authService.logout();
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

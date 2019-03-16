@@ -84,8 +84,8 @@ export class InfoFormFieldComponent implements OnInit, OnChanges {
         this.isSaved = true;
         this._showIcon = true;
         if (this.isNew) {
-          this.abstractControl.parent.patchValue({id: last(apartmentTenants).id});
-          this.abstractControl.parent.patchValue({isNew: false});
+          // this.abstractControl.parent.patchValue({id: last(apartmentTenants).id});
+          // this.abstractControl.parent.patchValue({isNew: false});
 
 
         }

@@ -34,12 +34,12 @@ export function rootReducer(lastState: IAppState, action: FSA<Payload, MetaData>
       let index = _.indexOf(state.selectedApartment.apartmentTenants, tenant);
       for (let key in tenant)
         state.selectedApartment.apartmentTenants[index][key] = action.payload[0][key];
-      state.selectedApartment.apartmentTenants=[...state.selectedApartment.apartmentTenants];
+      state.selectedApartment.apartmentTenants = [...state.selectedApartment.apartmentTenants];
       return state;
     case StoreConst.TENANT_DATA_ADDED:
       state = <IAppState>{...lastState};
       state.selectedApartment.apartmentTenants.push(action.payload[0])
-      state.selectedApartment.apartmentTenants=[...state.selectedApartment.apartmentTenants];
+      state.selectedApartment.apartmentTenants = [...state.selectedApartment.apartmentTenants];
       return state
     case StoreConst.DATA_LOADED_SelectedApartmentDetails:
       let l = <[[ApartmentDebt], [ApartmentTenant], [Apartment]]>action.payload;
@@ -51,6 +51,10 @@ export function rootReducer(lastState: IAppState, action: FSA<Payload, MetaData>
       };
       state = <IAppState>{...lastState};
       state.selectedApartment = data;
+      return state;
+    case StoreConst.DATA_LOADED_WORKS:
+      state = {...lastState};
+      state.works = action.payload;
       return state;
   }
   return lastState;

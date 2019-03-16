@@ -17,6 +17,6 @@ import {SharedModule} from "../common/shared.module";
   ],
 },)
 
-export class WorksModule {
+export class ExpandedModule {
 
 }

@@ -6,7 +6,7 @@ export module StoreConst {
     selectedApartment: undefined,
     metaData: {lastUpdateTime: undefined, numberOfApartments: 0},
     user: undefined,
-
+    works: undefined
 
   }
   export const APARTMENTS_DASH_LOADED = "APARTMENTS_DASH_LOADED";
@@ -24,6 +24,7 @@ export module StoreConst {
   export const DATA_LOADED_ = "DATA_LOADED_"
   export const LOAD_SELECTED_APARTMENT_DETAILS = "LOAD_SELECTED_APARTMENT_DETAILS"
   export const DATA_LOADED_SelectedApartmentDetails = "DATA_LOADED_SelectedApartmentDetails"
+  export const DATA_LOADED_WORKS = "DATA_LOADED_WORKS"
   export const TENANT_DATA_UPDATED = "DATA_UPDATED_name"
   export const TENANT_DATA_ADDED = 'TENANT_DATA_ADDED';
 
