@@ -20,6 +20,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
+import { DatePipe } from './pipes/date.pipe';
 @NgModule({
   exports: [ BrowserAnimationsModule,
     LayoutModule,
@@ -33,7 +34,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatPaginatorModule,ReactiveFormsModule,
-  FormsModule,CdkTableModule,MatInputModule,MatRadioModule,MatCardModule,MatChipsModule,MatSnackBarModule]
+  FormsModule,CdkTableModule,MatInputModule,MatRadioModule,MatCardModule,MatChipsModule,MatSnackBarModule,DatePipe],
+  declarations: [DatePipe]
 })
 export class SharedModule {
 }

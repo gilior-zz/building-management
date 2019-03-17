@@ -1,4 +1,28 @@
+.example-container {
+  height: 80vh;
+  overflow: auto;
+  margin: 0 5% 0 5%;
+  mat-header-cell{
+    justify-content: center;
+  }
+  mat-cell{
+    justify-content: center;
+    direction: ltr;
+    display: flex;
+    font-weight: bold;
+  }
+  mat-row{
+    cursor: pointer;
+    &:hover{
+      background: rgba(29, 143, 224,0.5);
+      mat-cell{
+        color:white;
 
+      }
+
+    }
+  }
+}
 mat-table {
   width: 100%;
 }
@@ -23,11 +47,13 @@ mat-table {
   .example-element-row {
     border-bottom-width: 0;
     height: 47px;
+    cursor: pointer;
   }
 
   .example-element-detail {
     overflow: hidden;
     display: flex;
+
   }
 
   .example-element-diagram {

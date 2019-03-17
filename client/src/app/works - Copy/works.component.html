@@ -1,36 +1,48 @@
-<mat-table
-  [dataSource]="dataSource" multiTemplateDataRows
-  class="mat-elevation-z8">
-  <ng-container matColumnDef="{{column.key}}" *ngFor="let column of columnsToDisplay|keyvalue">
-    <mat-header-cell *matHeaderCellDef> {{column.key}}</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element[column.key]}}</mat-cell>
-  </ng-container>
+<div class="example-container mat-elevation-z8">
+  <!--<div class="example-loading-shade"-->
+  <!--*ngIf="isLoadingResults || isRateLimitReached">-->
+  <!--<mat-spinner *ngIf="isLoadingResults"></mat-spinner>-->
+  <!--<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">-->
+  <!--GitHub's API rate limit has been reached. It will be reset in one minute.-->
+  <!--</div>-->
+  <!--</div>-->
 
-  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-  <ng-container matColumnDef="expandedDetail">
-    <mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-      <div class="example-element-detail"
-           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-        <div class="example-element-diagram">
-          <div class="example-element-position"> {{element.workExtraDetails.id}}</div>
-          <div class="example-element-position"> {{element.workExtraDetails.data}}</div>
-        </div>
-        <div class="example-element-description">
-          {{element.description}}
-          <span class="example-element-description-attribution"> -- Wikipedia </span>
-        </div>
-      </div>
-    </mat-cell>
-  </ng-container>
+  <div class="example-table-container">
+    <mat-table matSort #foo matSortActive="created" matSortDirection="asc"
+               [dataSource]="dataSource" multiTemplateDataRows
+               class="mat-elevation-z8">
+      <ng-container matColumnDef="{{column.key}}" *ngFor="let column of columnsToDisplay|keyvalue">
+        <mat-header-cell mat-sort-header *matHeaderCellDef> {{column.value}}</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element[column.key]|date:'dd/MM/yy'}}</mat-cell>
+      </ng-container>
 
-  <mat-header-row *matHeaderRowDef="columnsNamesArray"></mat-header-row>
-  <mat-row *matRowDef="let element; columns: columnsNamesArray;"
-           class="example-element-row"
-           [class.example-expanded-row]="expandedElement === element"
-           (click)="expandedElement = expandedElement === element ? null : element">
-  </mat-row>
-  <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row>
-</mat-table>
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <div class="example-element-position"> {{element.workExtraDetails.id}}</div>
+              <div class="example-element-position"> {{element.workExtraDetails.data}}</div>
+            </div>
+            <div class="example-element-description">
+              {{element.description}}
+              <span class="example-element-description-attribution"> -- Wikipedia </span>
+            </div>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsNamesArray"></mat-header-row>
+      <mat-row *matRowDef="let element; columns: columnsNamesArray;"
+               class="example-element-row"
+               [class.example-expanded-row]="expandedElement === element"
+               (click)="expandedElement = expandedElement === element ? null : element">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row>
+    </mat-table>
+  </div>
+</div>
 
 
 <!-- Copyright 2018 Google Inc. All Rights Reserved.
